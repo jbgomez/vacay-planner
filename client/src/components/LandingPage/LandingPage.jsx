@@ -6,10 +6,14 @@ const LandingPage = (props) => (
   <div>
 
     <NavBar user={props.user} />
-    <LandingPageBody history={props.history} handleLocationChange={props.handleLocationChange} 
-      handleStartDayChange={props.handleStartDayChange} handleEndDayChange={props.handleEndDayChange} 
+    <LandingPageBody
+      history={props.history}
+      address={props.address}
+      handleStartDayChange={props.handleStartDayChange}
+      handleEndDayChange={props.handleEndDayChange} 
       handleLogout={props.handleLogout}
-      handleChange={props.handleChange} handleSelect={props.handleSelect} address={props.address}
+      handleAddressChange={props.handleAddressChange}
+      handleAddressSelect={props.handleAddressSelect}
     />
 
   </div>
