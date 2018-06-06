@@ -80,7 +80,7 @@ class FoodAndEventsPage extends React.Component {
   getRestaurantsByLocation() {
     $.ajax({
       type: 'GET',
-      url: `/restaurants/${this.props.inputLocation}`,
+      url: `/restaurants/${JSON.stringify(this.props.latLng)}`,
       success: result => {
         this.setState({
           restaurantList: result.businesses
@@ -96,7 +96,7 @@ class FoodAndEventsPage extends React.Component {
       data: {
         startDate: this.props.startDate,
         endDate: this.props.endDate,
-        location: this.props.inputLocation
+        location: this.props.addressComponents
       },
       dataType: 'json',
       success: result => {
