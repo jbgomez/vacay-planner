@@ -66,19 +66,19 @@ app.get('/createdb', (req, res) => {
 
 // Get events from Ticketmaster API
 app.get('/events', (req, res) => {
-
-  let startDate = new Date(req.query.startDate).toISOString().split('.')[0]+'Z';
-  let endDate = new Date(req.query.endDate).toISOString().split('.')[0]+'Z';
-  let location = req.query.location.split(', ')
-  let city = location[location.length - 3];
-  let stateCode = location[location.length - 2];
+  const eventsQuery = req.session.eventsQuery = req.query || req.session.eventsQuery;
+  let startDate = new Date(eventsQuery.startDate).toISOString().split('.')[0]+'Z';
+  let endDate = new Date(eventsQuery.endDate).toISOString().split('.')[0]+'Z';
+  let location = eventsQuery.location;
 
   let options = {
-    city: city,
     startDate: startDate,
     endDate: endDate,
-    stateCode: stateCode,
-    size: 30
+    city: location.city,
+    stateCode: location.stateCode,
+    countryCode: location.countryCode,
+    size: 30,
+    radius: '500'
   };
 
   tm(options, (data) => res.status(200).end(JSON.stringify(data)));
@@ -86,7 +86,7 @@ app.get('/events', (req, res) => {
 
 // Get restaurants from Yelp API
 app.get('/restaurants/:location', (req, res) => {
-  yelp.getRestaurants(req.params.location, data => {
+  yelp.getRestaurants(JSON.parse(req.params.location), data => {
     parsedData = JSON.parse(data);
     res.status(200).send((parsedData));
   }, req.params.location)
