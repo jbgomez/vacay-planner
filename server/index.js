@@ -100,7 +100,7 @@ app.get('/trips', (req, res) => {
   if (req.session.user !== null) {
     db.getUserTrips({email: req.session.user}, (obj) => res.status(200).end(JSON.stringify(obj)))
   } else {
-    console.log('must be logged in to get trips')
+    res.status(400).send('must be logged in to get trips')
   }
 });
 

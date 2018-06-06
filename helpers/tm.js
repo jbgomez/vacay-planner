@@ -4,7 +4,6 @@ const config = require('../config.js');
 const key = config.TM_KEY
 
 const tm = (options, cb) => {
-  // console.log(options)
   request.get({
     method: 'GET',
     uri: 'https://app.ticketmaster.com/discovery/v2/events.json',
