@@ -208,7 +208,6 @@ var dbHelpers = {
         //create the Restaurants if they exist
         if (obj.restaurantList !== undefined) {
           obj.restaurantList.forEach(restaurant => {
-
             var tempRest = Restaurant.build({
               name: restaurant.name,
               yelpURL: restaurant.url,
