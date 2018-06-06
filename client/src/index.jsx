@@ -20,7 +20,7 @@ class App extends React.Component {
       location: '',
       startDate: new Date(),
       endDate: new Date(),
-      address: '' 
+      address: ''
     };
     this.loginUser = this.loginUser.bind(this);
     this.signUpUser = this.signUpUser.bind(this);
@@ -33,8 +33,6 @@ class App extends React.Component {
   //write functions
 
   loginUser(email, password, history) {
-    console.log('email: ', email);
-    console.log('password: ', password);
 
     $.ajax({
       url: '/login',
@@ -52,8 +50,6 @@ class App extends React.Component {
   }
 
   signUpUser(email, password, history) {
-    console.log('email: ', email);
-    console.log('password: ', password);
 
     $.ajax({
       url: '/signup',
@@ -86,7 +82,6 @@ class App extends React.Component {
   }
 
   handleLogout() {
-    console.log(document.cookie)
     this.setState({user: null})
   }
 
@@ -103,8 +98,8 @@ class App extends React.Component {
         <div className='container'>
           <Route exact path='/' render={(props) => {
             return (
-              <LandingPage handleLocationChange={this.handleLocationChange} handleStartDayChange={this.handleStartDayChange} 
-                handleEndDayChange={this.handleEndDayChange} user={this.state.user} handleLogout={this.handleLogout}{...props} 
+              <LandingPage handleLocationChange={this.handleLocationChange} handleStartDayChange={this.handleStartDayChange}
+                handleEndDayChange={this.handleEndDayChange} user={this.state.user} handleLogout={this.handleLogout}{...props}
                 handleChange={this.handleChange} handleSelect={this.handleSelect} address={this.state.address}
               />
             )} }/>

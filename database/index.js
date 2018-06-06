@@ -113,7 +113,6 @@ User.sync().then(() => Trip.sync().then(() => Restaurant.sync().then(() => Event
 var dbHelpers = {
 
   // This function adds a new user if one is passed as an object
-  // and is
   addUser: (obj, cb) => {
     User.findOne({where: {email: obj.email}}).then(user => {
       if (user === null) {
@@ -209,7 +208,7 @@ var dbHelpers = {
         //create the Restaurants if they exist
         if (obj.restaurantList !== undefined) {
           obj.restaurantList.forEach(restaurant => {
-            console.log(Restaurant)
+
             var tempRest = Restaurant.build({
               name: restaurant.name,
               yelpURL: restaurant.url,
@@ -255,8 +254,6 @@ var dbHelpers = {
 
       //associate with user
       testTrip.setUser(user, {save: false});
-
-      // testTrip.getUser().then(user => console.log(user));
 
       //& save test Trip
       testTrip.save().then(trip => {
