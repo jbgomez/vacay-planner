@@ -18,26 +18,27 @@ const LandingPageBody = (props) => (
 
               <Segment stacked>
                 City, State:<br />
-                <LocationSearchInput handleChange={props.handleChange} 
-                  handleSelect={props.handleSelect} address={props.address}
-                  handleLocationChange={props.handleLocationChange}
+                <LocationSearchInput
+                  address={props.address}
+                  handleAddressChange={props.handleAddressChange}
+                  handleAddressSelect={props.handleAddressSelect}
                 />
                 <br /><br />
                 Start Date:<br />
                 <DayPickerInput
-                onDayChange={props.handleStartDayChange}
-                formatDate={formatDate}
-                parseDate={parseDate}
-                placeholder={`${formatDate(new Date())}`}
+                  onDayChange={props.handleStartDayChange}
+                  formatDate={formatDate}
+                  parseDate={parseDate}
+                  placeholder={`${formatDate(new Date())}`}
                 />
                 <br /><br />
                 End Date:<br />
 
                 <DayPickerInput
-                onDayChange={props.handleEndDayChange}
-                formatDate={formatDate}
-                parseDate={parseDate}
-                placeholder={`${formatDate(new Date())}`}
+                  onDayChange={props.handleEndDayChange}
+                  formatDate={formatDate}
+                  parseDate={parseDate}
+                  placeholder={`${formatDate(new Date())}`}
                 />
                 <br /><br />
 
