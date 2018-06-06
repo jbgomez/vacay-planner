@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const session = require('client-sessions');
 const bcrypt = require('bcrypt-nodejs')
 
-
 const db = require('../database');
 const tm = require('../helpers/tm');
 const yelp = require('../helpers/yelp');
@@ -65,7 +64,6 @@ app.get('/createdb', (req, res) => {
 //                            End                                  //
 /////////////////////////////////////////////////////////////////////
 
-
 // Get events from Ticketmaster API
 app.get('/events', (req, res) => {
 
@@ -84,7 +82,6 @@ app.get('/events', (req, res) => {
   };
 
   tm(options, (data) => res.status(200).end(JSON.stringify(data)));
-
 });
 
 // Get restaurants from Yelp API
@@ -159,7 +156,7 @@ app.post('/login', (req, res) => {
           res.status(400).end('incorrect username or password');
         }
 
-      })
+      });
     } else {
       res.status(400).end('User Doesn\'t exist. Sign up!');
     }
@@ -185,8 +182,8 @@ app.post('/signup', (req, res) => {
           res.status(200).end(JSON.stringify(addedUser.email));
         }
       })
-    })
-  })
+    });
+  });
 })
 
 app.post('/logout', (req, res) => {

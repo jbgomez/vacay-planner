@@ -1,5 +1,4 @@
 const Sequelize = require('sequelize');
-
 const testRests = require('../sample_data/sample_restaurants.js');
 const testEvents = require('../sample_data/sample_events.js');
 
@@ -27,7 +26,6 @@ db
   .catch(err => {
     console.error('Unable to connect to the database:', err);
   });
-
 
 // The following 4 functions create the
 // Database Table Schemas
@@ -71,7 +69,6 @@ const Event = db.define('event', {
   venueLat: Sequelize.FLOAT,
   venueAddress: Sequelize.STRING
 });
-
 
 // This sets up Associations between different tables/models,
 // and gives us nifty helper functions; like setters and getters.
@@ -176,7 +173,6 @@ var dbHelpers = {
   newTrip: (email, obj) => {
 
     User.findOne({where: {email: email}}).then(user => {
-
 
       //create the Trip
       user.createTrip({
@@ -303,7 +299,6 @@ var dbHelpers = {
       });
     });
   },
-
 
   //////////////////////////////////////////////////////////
   //                       End                            //
