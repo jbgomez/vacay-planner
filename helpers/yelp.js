@@ -5,8 +5,7 @@ const key = config.YELP_KEY
 
 module.exports = {
   getRestaurants: (location, callback) => {
-    // location = 'san francisco'
-    const encodedURI = encodeURI(`https://api.yelp.com/v3/businesses/search?term=restaurants&location=${location}`)
+    const encodedURI = encodeURI(`https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=${location.lat}&longitude=${location.lng}`)
     const authStr = 'Bearer '.concat(key);
     const options = {
       url: encodedURI,

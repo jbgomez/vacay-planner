@@ -5,8 +5,8 @@ function LocationSearchInput(props) {
     return (
       <PlacesAutocomplete
         value={props.address}
-        onSelect={props.handleSelect}
-        onChange={props.handleLocationChange}
+        onSelect={props.handleAddressSelect}
+        onChange={props.handleAddressChange}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps }) => (
           <div>
