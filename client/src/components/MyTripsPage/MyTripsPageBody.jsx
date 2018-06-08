@@ -62,10 +62,10 @@ class MyTripsPageBody extends React.Component {
     var data = {
       tripId: restaurant.tripId,
       tripItemId: restaurant.id,
-    }
+    };
     $.ajax({
       type: 'POST',
-      url: `/remove`,
+      url: `/delete`,
       data: data,
       success: () => {
         this.getAllTrips();

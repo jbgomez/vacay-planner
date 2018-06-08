@@ -30,7 +30,7 @@ function RestaurantsList(props) {
                       return address
                     }).join(', ')}
                   </Item.Description>
-                  <Button onClick={() => {props.handleDeleteClick(restaurant)}}> Delete </Button>
+                  <Button onClick={() => {props.handleDeleteClick(restaurant)}}>Delete</Button>
                   <Item.Extra>
                     {restaurant.price ?
                       ( <span>{restaurant.price }</span> ) : '---'

@@ -175,7 +175,7 @@ var dbHelpers = {
       }
     }).then((restaurant) => {
         restaurant.destroy();
-        cb(null, 'OK')
+        cb(null, 'OK');
     }).catch((err) => {
       cb(err, null);
     });

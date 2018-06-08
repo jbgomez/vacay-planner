@@ -139,7 +139,7 @@ app.post('/trips', (req, res) => {
   }
 })
 
-app.post('/remove', (req, res) => {
+app.post('/delete', (req, res) => {
   db.deleteTripItem(req.body.tripId, req.body.tripItemId, function(err, result) {
     if (err) {
       res.status(500).end('error');
