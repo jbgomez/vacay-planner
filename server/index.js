@@ -139,6 +139,16 @@ app.post('/trips', (req, res) => {
   }
 })
 
+app.post('/remove', (req, res) => {
+  db.deleteTripItem(req.body.tripId, req.body.tripItemId, function(err, result) {
+    if (err) {
+      res.status(500).end('error');
+    } else  {
+      res.send('OK');
+    }
+  })
+})
+
 app.post('/login', (req, res) => {
   let email = req.body.email;
   let enteredPassword = req.body.password;

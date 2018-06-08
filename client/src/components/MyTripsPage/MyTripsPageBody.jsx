@@ -21,7 +21,7 @@ class MyTripsPageBody extends React.Component {
   }
   
   componentDidMount() {
-    this.getAllTrips()
+    this.getAllTrips();
     this.updateSelection(this.state.selectedTrip);
   }
 
@@ -57,6 +57,22 @@ class MyTripsPageBody extends React.Component {
       }
     })
   }
+
+  handleDelete(restaurant) {
+    var data = {
+      tripId: restaurant.tripId,
+      tripItemId: restaurant.id,
+    }
+    $.ajax({
+      type: 'POST',
+      url: `/remove`,
+      data: data,
+      success: () => {
+        this.getAllTrips();
+        this.updateSelection(this.state.selectedTrip);
+      }
+    });
+  };
 
   getAllTrips() {
     $.ajax({
@@ -105,7 +121,7 @@ class MyTripsPageBody extends React.Component {
                   </Accordion.Title>
                   <Accordion.Content active={activeIndex === 1}>
                     <p> </p>
-                    {!this.state.restaurantsSelected.length ? <p>No Saved Restaurants</p> : <RestaurantsList restaurantsSelected={this.state.restaurantsSelected}/>}
+                    {!this.state.restaurantsSelected.length ? <p>No Saved Restaurants</p> : <RestaurantsList handleDeleteClick={this.handleDelete.bind(this)} restaurantsSelected={this.state.restaurantsSelected}/>}
                   </Accordion.Content>
                 </Accordion>
               </Grid.Column>

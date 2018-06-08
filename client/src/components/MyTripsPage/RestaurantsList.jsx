@@ -1,6 +1,6 @@
 import React from 'react';
 import moment from 'moment';
-import { Image, Item, Header, Card, Icon } from 'semantic-ui-react';
+import { Button, Image, Item, Header, Card, Icon } from 'semantic-ui-react';
 
 function RestaurantsList(props) {
   return (
@@ -30,6 +30,7 @@ function RestaurantsList(props) {
                       return address
                     }).join(', ')}
                   </Item.Description>
+                  <Button onClick={() => {props.handleDeleteClick(restaurant)}}> Delete </Button>
                   <Item.Extra>
                     {restaurant.price ?
                       ( <span>{restaurant.price }</span> ) : '---'
