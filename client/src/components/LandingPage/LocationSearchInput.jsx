@@ -7,6 +7,7 @@ function LocationSearchInput(props) {
         value={props.address}
         onSelect={props.handleAddressSelect}
         onChange={props.handleAddressChange}
+        searchOptions={{types: ['(cities)']}}
       >
         {({ getInputProps, suggestions, getSuggestionItemProps }) => (
           <div>
@@ -24,7 +25,6 @@ function LocationSearchInput(props) {
                   : { backgroundColor: '#ffffff', cursor: 'pointer' };
                 return (
                   <div {...getSuggestionItemProps(suggestion, { className, style })}>
-                    {/* {console.log('suggestion.description', suggestion.description)} */}
                     <span>{suggestion.description}</span>
                   </div>
                 )
