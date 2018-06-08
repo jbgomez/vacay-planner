@@ -14,6 +14,7 @@ const LandingPage = (props) => (
       handleLogout={props.handleLogout}
       handleAddressChange={props.handleAddressChange}
       handleAddressSelect={props.handleAddressSelect}
+      handleSubmit={props.handleSubmit}
     />
 
   </div>
