@@ -10,7 +10,7 @@ const LandingPage = (props) => (
       history={props.history}
       address={props.address}
       handleStartDayChange={props.handleStartDayChange}
-      handleEndDayChange={props.handleEndDayChange} 
+      handleEndDayChange={props.handleEndDayChange}
       handleLogout={props.handleLogout}
       handleAddressChange={props.handleAddressChange}
       handleAddressSelect={props.handleAddressSelect}

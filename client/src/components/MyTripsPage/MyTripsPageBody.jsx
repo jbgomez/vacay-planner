@@ -19,7 +19,7 @@ class MyTripsPageBody extends React.Component {
     }
     this.updateSelection = this.updateSelection.bind(this);
   }
-  
+
   componentDidMount() {
     this.getAllTrips();
     this.updateSelection(this.state.selectedTrip);
@@ -30,8 +30,8 @@ class MyTripsPageBody extends React.Component {
     const { activeIndex } = this.state
     const newIndex = activeIndex === index ? -1 : index
 
-    this.setState({ 
-      activeIndex: newIndex 
+    this.setState({
+      activeIndex: newIndex
     })
     this.updateSelection(this.state.selectedTrip)
   }
@@ -94,7 +94,7 @@ class MyTripsPageBody extends React.Component {
   render() {
     const {activeIndex} = this.state
     return (
-      <div> 
+      <div>
         <Grid columns='equal' style={ { marginTop: 50, backgroundColor: 'white'} }>
           <Grid.Column floated='left' width={3}>
             <SelectTrip
@@ -125,8 +125,8 @@ class MyTripsPageBody extends React.Component {
                   </Accordion.Content>
                 </Accordion>
               </Grid.Column>
-            ) 
-          : 
+            )
+          :
             (<span style={ {color: '#d0021b', fontSize: 30, align: 'center', marginRight: 450, marginTop: 50} }> No Saved Trips </span>)}
         </Grid>
       </div>
