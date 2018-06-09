@@ -99,9 +99,6 @@ class App extends React.Component {
       })
       .then(latLng => {
         newState.latLng = latLng;
-        this.setState(prevState => {
-          return newState;
-        });
         this.setState(newState, () => cb ? cb() : null);
       })
       .catch(error => console.error('Error', error))
