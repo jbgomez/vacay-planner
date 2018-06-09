@@ -7,8 +7,7 @@ import LocationSearchInput from './LocationSearchInput.jsx';
 const LandingPageBody = (props) => (
   <Grid verticalAlign='middle' style={ {marginTop: 50} }>
     <LandingPageMyTrips
-      history={props.history}
-      address={props.address}
+      allTrips={props.allTrips}
     />
     <Grid.Row>
       <Grid.Column style={{ maxWidth: 450}}>
