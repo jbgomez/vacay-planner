@@ -54,7 +54,6 @@ class FoodAndEventsPage extends React.Component {
       eventList: this.state.eventFavorites,
       restaurantList: this.state.foodFavorites
     };
-    console.log(data)
     $.ajax({
       method: 'POST',
       url: '/trips',
@@ -77,10 +76,15 @@ class FoodAndEventsPage extends React.Component {
     this.getEventsByLocationAndDate();
   }
 
-  getRestaurantsByLocation() {
+  getRestaurantsByLocation(sortBy) {
     $.ajax({
       type: 'GET',
-      url: `/restaurants/${JSON.stringify(this.props.latLng)}`,
+      url: '/restaurants',
+      data: {
+        sortBy: sortBy || 'best_match',
+        location: this.props.latLng
+      },
+      dataType: 'json',
       success: result => {
         this.setState({
           restaurantList: result.businesses
@@ -89,14 +93,15 @@ class FoodAndEventsPage extends React.Component {
     });
   }
 
-  getEventsByLocationAndDate() {
+  getEventsByLocationAndDate(sortCriteria) {
     $.ajax({
       type: 'GET',
       url: `/events`,
       data: {
         startDate: this.props.startDate,
         endDate: this.props.endDate,
-        location: this.props.addressComponents
+        location: this.props.addressComponents,
+        sort: sortCriteria || 'date,asc'
       },
       dataType: 'json',
       success: result => {

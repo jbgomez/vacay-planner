@@ -70,6 +70,7 @@ app.get('/events', (req, res) => {
   let startDate = new Date(eventsQuery.startDate).toISOString().split('.')[0]+'Z';
   let endDate = new Date(eventsQuery.endDate).toISOString().split('.')[0]+'Z';
   let location = eventsQuery.location;
+  let sort = eventsQuery.sort;
 
   let options = {
     startDate: startDate,
@@ -78,18 +79,22 @@ app.get('/events', (req, res) => {
     stateCode: location.stateCode,
     countryCode: location.countryCode,
     size: 30,
-    radius: '500'
+    radius: '500',
+    sort: sort
   };
 
   tm(options, (data) => res.status(200).end(JSON.stringify(data)));
 });
 
 // Get restaurants from Yelp API
-app.get('/restaurants/:location', (req, res) => {
-  yelp.getRestaurants(JSON.parse(req.params.location), data => {
+app.get('/restaurants', (req, res) => {
+  let query = req.query;
+
+  yelp.getRestaurants(query, data => {
     parsedData = JSON.parse(data);
     res.status(200).send((parsedData));
-  }, req.params.location)
+  });
+
 });
 
 // Get saved trips from database for a registered user
