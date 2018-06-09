@@ -162,9 +162,9 @@ var dbHelpers = {
       .then(tripEvents => output.events = tripEvents)
       .then(() => {trip.getRestaurants()
         .then(tripRestaurants => output.restaurants = tripRestaurants)
-        .then( () => cb(output) )
-      })
-    })
+        .then( () => cb(output) );
+      });
+    });
   },
 
   deleteRestaurant: (tripId, tripItemId, cb) => {
