@@ -181,6 +181,20 @@ var dbHelpers = {
     });
   },
 
+  deleteEvent: (tripId, tripItemId, cb) => {
+  Event.findOne({
+    where: {
+      id: tripItemId,
+      tripId: tripId,
+    }
+  }).then((event) => {
+    event.destroy();
+    cb(null, 'OK');
+  }).catch((err) => {
+    cb(err, null);
+  });
+},
+
   // This will create a new Trip
   // and save all associated Events
   // & Restaurants to the Database

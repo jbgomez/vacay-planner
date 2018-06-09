@@ -74,6 +74,22 @@ class MyTripsPageBody extends React.Component {
     });
   };
 
+  handleEventDelete(event) {
+    var data = {
+      tripId: event.tripId,
+      tripItemId: event.id,
+    };
+    $.ajax({
+      type: 'POST',
+      url: `/delete/event`,
+      data: data,
+      success: () => {
+        this.getAllTrips();
+        this.updateSelection(this.state.selectedTrip);
+      }
+    });
+  };
+
   getAllTrips() {
     $.ajax({
       type: 'GET',
@@ -128,7 +144,7 @@ class MyTripsPageBody extends React.Component {
                   </Accordion.Title>
                   <Accordion.Content active={activeIndex === 0}>
                     <p> </p>
-                    {!this.state.eventsSelected.length ? <p>No Saved Events</p> : <EventsList eventsSelected={this.state.eventsSelected}/>}
+                    {!this.state.eventsSelected.length ? <p>No Saved Events</p> : <EventsList handleDeleteClick={this.handleEventDelete.bind(this)} eventsSelected={this.state.eventsSelected}/>}
                   </Accordion.Content>
                   <Accordion.Title style={ {color: '#d0021b', fontSize: 20} } active={activeIndex === 1} index={1} onClick={this.handleClick.bind(this)}>
                     <Icon name='dropdown' />
