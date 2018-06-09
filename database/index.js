@@ -174,14 +174,15 @@ var dbHelpers = {
         tripId: tripId,
       }
     }).then((restaurant) => {
-        restaurant.destroy();
-        cb(null, 'OK');
+      restaurant.destroy();
+    }).then(() => {
+      cb(null, 'OK');
     }).catch((err) => {
       cb(err, null);
     });
   },
 
-  deleteEvent: (tripId, tripItemId, cb) => {
+deleteEvent: (tripId, tripItemId, cb) => {
   Event.findOne({
     where: {
       id: tripItemId,
@@ -189,6 +190,7 @@ var dbHelpers = {
     }
   }).then((event) => {
     event.destroy();
+  }).then(() => {
     cb(null, 'OK');
   }).catch((err) => {
     cb(err, null);
