@@ -81,7 +81,7 @@ class FoodAndEventsPage extends React.Component {
       type: 'GET',
       url: '/restaurants',
       data: {
-        sortBy: sortBy|| 'best_match',
+        sortBy: sortBy || 'best_match',
         location: this.props.latLng
       },
       dataType: 'json',

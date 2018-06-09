@@ -93,7 +93,7 @@ app.get('/restaurants', (req, res) => {
   yelp.getRestaurants(query, data => {
     parsedData = JSON.parse(data);
     res.status(200).send((parsedData));
-  })
+  });
 
 });
 
