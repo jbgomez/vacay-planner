@@ -17,13 +17,12 @@ function SelectTrip(props) {
         )
       })}
     </Menu>
-  )  
+  );
 }
 
 SelectTrip.propTypes = {
   selectedTrip: Proptypes.number.isRequired,
   onSelect: Proptypes.func.isRequired
 };
-
 
 export default SelectTrip;
