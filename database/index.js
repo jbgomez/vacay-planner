@@ -162,9 +162,9 @@ var dbHelpers = {
       .then(tripEvents => output.events = tripEvents)
       .then(() => {trip.getRestaurants()
         .then(tripRestaurants => output.restaurants = tripRestaurants)
-        .then( () => cb(output) )
-      })
-    })
+        .then( () => cb(output) );
+      });
+    });
   },
 
   deleteRestaurant: (tripId, tripItemId, cb) => {
@@ -174,12 +174,28 @@ var dbHelpers = {
         tripId: tripId,
       }
     }).then((restaurant) => {
-        restaurant.destroy();
-        cb(null, 'OK');
+      restaurant.destroy();
+    }).then(() => {
+      cb(null, 'OK');
     }).catch((err) => {
       cb(err, null);
     });
   },
+
+deleteEvent: (tripId, tripItemId, cb) => {
+  Event.findOne({
+    where: {
+      id: tripItemId,
+      tripId: tripId,
+    }
+  }).then((event) => {
+    event.destroy();
+  }).then(() => {
+    cb(null, 'OK');
+  }).catch((err) => {
+    cb(err, null);
+  });
+},
 
   // This will create a new Trip
   // and save all associated Events

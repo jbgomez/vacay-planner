@@ -140,9 +140,9 @@ app.post('/trips', (req, res) => {
     res.status(200).end('successfully added trip')
 
   } else {
-    res.status(500).end('error')
+    res.status(500).end('error');
   }
-})
+});
 
 app.post('/delete/restaurant', (req, res) => {
   db.deleteRestaurant(req.body.tripId, req.body.tripItemId, function(err, result) {
@@ -151,8 +151,18 @@ app.post('/delete/restaurant', (req, res) => {
     } else  {
       res.send('OK');
     }
-  })
-})
+  });
+});
+
+app.post('/delete/event', (req, res) => {
+  db.deleteEvent(req.body.tripId, req.body.tripItemId, function(err, result) {
+    if (err) {
+      res.status(500).end('error');
+    } else  {
+      res.send('OK');
+    }
+  });
+});
 
 app.post('/login', (req, res) => {
   let email = req.body.email;
@@ -175,8 +185,8 @@ app.post('/login', (req, res) => {
     } else {
       res.status(400).end('User Doesn\'t exist. Sign up!');
     }
-  })
-})
+  });
+});
 
 app.post('/signup', (req, res) => {
   let email = req.body.email;
@@ -196,14 +206,14 @@ app.post('/signup', (req, res) => {
           delete req.session.password;
           res.status(200).end(JSON.stringify(addedUser.email));
         }
-      })
+      });
     });
   });
-})
+});
 
 app.post('/logout', (req, res) => {
   req.session.reset();
-})
+});
 
 app.listen(process.env.PORT !== undefined ? process.env.PORT : PORT, () => {
   console.log(`listening on port ${PORT}`);
