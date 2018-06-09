@@ -11,7 +11,7 @@ const LandingPageBody = (props) => (
         <Card centered fluid>
           <Card.Content header='Vacation Planner' />
           <Card.Content extra>
-            <Form onSubmit={() => {props.history.push('/foodandevents')}}>
+            <Form onSubmit={() => props.handleSubmit(props.history)}>
               <Header as='h2' color='red' textAlign='center'>
                 {' '}Where to?
               </Header>
@@ -30,6 +30,7 @@ const LandingPageBody = (props) => (
                   formatDate={formatDate}
                   parseDate={parseDate}
                   placeholder={`${formatDate(new Date())}`}
+                  value={`${formatDate(new Date())}`}
                 />
                 <br /><br />
                 End Date:<br />
@@ -38,7 +39,8 @@ const LandingPageBody = (props) => (
                   onDayChange={props.handleEndDayChange}
                   formatDate={formatDate}
                   parseDate={parseDate}
-                  placeholder={`${formatDate(new Date())}`}
+                  placeholder={`${formatDate(new Date(new Date().valueOf() + 60 * 60 * 24 * 1000))}`}
+                  value={`${formatDate(new Date(new Date().valueOf() + 60 * 60 * 24 * 1000))}`}
                 />
                 <br /><br />
 

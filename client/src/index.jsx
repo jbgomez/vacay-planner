@@ -18,7 +18,7 @@ class App extends React.Component {
     this.state = {
       user: null,
       startDate: new Date(),
-      endDate: new Date(),
+      endDate: new Date(new Date().valueOf() + 60 * 60 * 24 * 1000),
       address: ''
     };
     this.loginUser = this.loginUser.bind(this);
@@ -27,7 +27,8 @@ class App extends React.Component {
     this.handleEndDayChange = this.handleEndDayChange.bind(this);
     this.handleAddressChange = this.handleAddressChange.bind(this);
     this.handleAddressSelect = this.handleAddressSelect.bind(this);
-    this.handleLogout = this.handleLogout.bind(this)
+    this.handleLogout = this.handleLogout.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   //write functions
@@ -80,7 +81,8 @@ class App extends React.Component {
 
   handleAddressChange(address) {
     this.setState({
-      address: address
+      address: address,
+      latLng: null
     });
   }
 
@@ -90,9 +92,9 @@ class App extends React.Component {
     geocodeByAddress(location)
       .then(results => {
         newState.addressComponents = {
-          city: results[0].address_components[2].long_name,
-          stateCode: results[0].address_components[5].short_name,
-          countryCode: results[0].address_components[6].short_name
+          city: results[0].address_components[0].long_name,
+          stateCode: results[0].address_components[2].short_name,
+          countryCode: results[0].address_components[3].short_name
         };
         return getLatLng(results[0]);
       })
@@ -101,6 +103,16 @@ class App extends React.Component {
         this.setState(newState);
       })
       .catch(error => console.error('Error', error))
+  }
+
+  handleSubmit(history) {
+    if (!this.state.address.trim().length || !this.state.latLng) {
+      alert('Please select a valid city and state.');
+    } else if (this.state.startDate >= this.state.endDate) {
+      alert('Start Date cannot be greater than End Date')
+    } else {
+      history.push('/foodandevents');
+    }
   }
 
   render() {
@@ -117,6 +129,7 @@ class App extends React.Component {
                 handleAddressChange={this.handleAddressChange}
                 handleAddressSelect={this.handleAddressSelect}
                 handleLogout={this.handleLogout}
+                handleSubmit={this.handleSubmit}
                 {...props}
               />
             )} }/>
