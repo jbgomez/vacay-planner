@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
-import { Button, Image, Item, Header, Card, Icon } from 'semantic-ui-react';
-import ModalBasic from './Modal.jsx'
+import { Image, Item, Header, Card, Icon } from 'semantic-ui-react';
+import DeleteItemModal from './DeleteItemModal.jsx';
 
 function RestaurantsList(props) {
   return (
@@ -31,7 +31,7 @@ function RestaurantsList(props) {
                       return address
                     }).join(', ')}
                   </Item.Description>
-                  <ModalBasic handleDeleteClick={props.handleDeleteClick} restaurant={restaurant} />
+                  <DeleteItemModal handleDeleteClick={props.handleDeleteClick} item={restaurant} />
                   <Item.Extra>
                     {restaurant.price ?
                       ( <span>{restaurant.price }</span> ) : '---'

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Header, Icon, Modal } from 'semantic-ui-react';
 
-class ModalBasic extends React.Component {
+class DeleteItemModal extends React.Component {
   constructor(props) {
     super(props);
     this.state = {modalOpen: false};
@@ -42,7 +42,7 @@ class ModalBasic extends React.Component {
             <Icon name='remove'/> No
           </Button>
           <Button color='green' inverted onClick={() => {
-            this.props.handleDeleteClick(this.props.restaurant)
+            this.props.handleDeleteClick(this.props.item)
           }}>
             <Icon name='checkmark'/> Yes
           </Button>
@@ -53,4 +53,4 @@ class ModalBasic extends React.Component {
 }
 
 
-export default ModalBasic;
+export default DeleteItemModal;
