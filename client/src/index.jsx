@@ -86,9 +86,8 @@ class App extends React.Component {
     });
   }
 
-  handleAddressSelect(location) {
+  handleAddressSelect(location, placeId, cb) {
     const newState = { address: location };
-
     geocodeByAddress(location)
       .then(results => {
         newState.addressComponents = {
@@ -100,16 +99,21 @@ class App extends React.Component {
       })
       .then(latLng => {
         newState.latLng = latLng;
-        this.setState(newState);
+        this.setState(newState, () => cb ? cb() : null);
       })
       .catch(error => console.error('Error', error))
   }
 
   handleSubmit(history) {
-    if (!this.state.address.trim().length || !this.state.latLng) {
+    if (!this.state.address.trim().length) {
       alert('Please select a valid city and state.');
     } else if (this.state.startDate >= this.state.endDate) {
-      alert('Start Date cannot be greater than End Date')
+      alert('Start Date cannot be greater than End Date');
+    } else if (!this.state.latLng) {
+      const savedSuggestion = document.querySelector('.location-search-input').getAttribute('data-first-suggestion');
+      this.handleAddressSelect(savedSuggestion, null, () => {
+        history.push('/foodandevents');
+      });
     } else {
       history.push('/foodandevents');
     }

@@ -18,7 +18,10 @@ function LocationSearchInput(props) {
               })}
             />
             <div className="autocomplete-dropdown-container">
-              {suggestions.map(suggestion => {
+              {suggestions.map((suggestion, i) => {
+                if (i === 0) {
+                  document.querySelector('.location-search-input').setAttribute('data-first-suggestion', suggestion.description);
+                }
                 const className = suggestion.active ? 'suggestion-item--active' : 'suggestion-item';
                 const style = suggestion.active
                   ? { backgroundColor: '#fafafa', cursor: 'pointer' }
