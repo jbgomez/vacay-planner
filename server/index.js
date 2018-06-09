@@ -144,8 +144,8 @@ app.post('/trips', (req, res) => {
   }
 })
 
-app.post('/delete', (req, res) => {
-  db.deleteTripItem(req.body.tripId, req.body.tripItemId, function(err, result) {
+app.post('/delete/restaurant', (req, res) => {
+  db.deleteRestaurant(req.body.tripId, req.body.tripItemId, function(err, result) {
     if (err) {
       res.status(500).end('error');
     } else  {

@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { Button, Image, Item, Header, Card, Icon } from 'semantic-ui-react';
+import ModalBasic from './Modal.jsx'
 
 function RestaurantsList(props) {
   return (
@@ -15,7 +16,7 @@ function RestaurantsList(props) {
                   src={ restaurant.image_url }
                   style={ {margin: 15} }
                 />
-                <Item.Content>
+                <Item.Content style={{position:'relative'}}>
                   <Item.Header style={ {marginTop: 20} } className='restaurant-name'>{ `${index + 1}. ${restaurant.name}` }</Item.Header>
                   <Item.Image>
                     <span className='restaurant-rating'>
@@ -30,7 +31,7 @@ function RestaurantsList(props) {
                       return address
                     }).join(', ')}
                   </Item.Description>
-                  <Button onClick={() => {props.handleDeleteClick(restaurant)}}>Delete</Button>
+                  <ModalBasic handleDeleteClick={props.handleDeleteClick} restaurant={restaurant} />
                   <Item.Extra>
                     {restaurant.price ?
                       ( <span>{restaurant.price }</span> ) : '---'

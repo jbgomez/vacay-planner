@@ -167,7 +167,7 @@ var dbHelpers = {
     })
   },
 
-  deleteTripItem: (tripId, tripItemId, cb) => {
+  deleteRestaurant: (tripId, tripItemId, cb) => {
     Restaurant.findOne({
       where: {
         id: tripItemId,
