@@ -16,23 +16,17 @@ class FoodAndEventsPage extends React.Component {
       eventFavorites: [],
       tripName: "",
       sortRestaurantList: [{label: 'Best Match',
-                            sortBy: 'best_match',
-                            active: true},
+                            sortBy: 'best_match'},
                             {label: 'Ratings',
-                            sortBy: 'rating',
-                            active: false},
+                            sortBy: 'rating'},
                             {label: 'Review',
-                            sortBy: 'review_count',
-                            active: false}],
+                            sortBy: 'review_count'}],
       sortEventList: [{label: 'Date',
-                      sortBy: 'date,desc',
-                      active: true},
+                      sortBy: 'date,desc'},
                       {label: 'Name',
-                      sortBy: 'name,asc',
-                      active: false},
+                      sortBy: 'name,asc'},
                       {label: 'Relevance',
-                      sortBy: 'relevance,desc',
-                      active: false}]
+                      sortBy: 'relevance,desc'}]
     };
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.saveTrip = this.saveTrip.bind(this);
