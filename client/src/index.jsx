@@ -16,7 +16,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: null,
+      user: '',
       startDate: new Date(),
       endDate: new Date(new Date().valueOf() + 60 * 60 * 24 * 1000),
       address: ''
@@ -34,7 +34,6 @@ class App extends React.Component {
   //write functions
 
   loginUser(email, password, history) {
-
     $.ajax({
       url: '/login',
       method: 'POST',
@@ -51,7 +50,6 @@ class App extends React.Component {
   }
 
   signUpUser(email, password, history) {
-
     $.ajax({
       url: '/signup',
       method: 'POST',
