@@ -4,7 +4,7 @@ import { Menu } from 'semantic-ui-react';
 
 const NavBar = (props) => {
   return (
-    props.user === null ?
+    props.user === '' ?
     (
       <Menu borderless pointing fixed='top'>
         <Menu.Item position="left">

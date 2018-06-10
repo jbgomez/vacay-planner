@@ -13,7 +13,7 @@ class LandingPage extends React.Component {
   }
 
   componentDidMount() {
-    if (props.user != '') this.getAllTrips();
+    if (this.props.user != '') this.getAllTrips();
   }
 
   getAllTrips() {
