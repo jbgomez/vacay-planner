@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import { Image, Item, Header, Card, Label } from 'semantic-ui-react';
+import DeleteItemModal from './DeleteItemModal.jsx';
 
 function EventsList(props) {
   return (
@@ -22,6 +23,7 @@ function EventsList(props) {
                   <Item.Description>
                     <strong>{event.venueName}, </strong>{event.venueAddress}
                   </Item.Description>
+                  <DeleteItemModal handleDeleteClick={props.handleDeleteClick} item={event} />
                   <Item.Extra>
                     <Label
                       style={ {textTransform: 'uppercase', backgroundColor: '#D3D3D3', color: '#2A2A2A'} }

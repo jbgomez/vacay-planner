@@ -1,7 +1,7 @@
 import React from 'react';
 import Proptypes from 'prop-types';
 import moment from 'moment';
-import { Grid, Accordion, Icon } from 'semantic-ui-react';
+import { Modal, Grid, Accordion, Icon } from 'semantic-ui-react';
 import SelectTrip from './SelectTrip.jsx';
 import EventsList from './EventsList.jsx';
 import RestaurantsList from './RestaurantsList.jsx';
@@ -58,14 +58,30 @@ class MyTripsPageBody extends React.Component {
     })
   }
 
-  handleDelete(restaurant) {
+  handleRestaurantDelete(restaurant) {
     var data = {
       tripId: restaurant.tripId,
       tripItemId: restaurant.id,
     };
     $.ajax({
       type: 'POST',
-      url: `/delete`,
+      url: `/delete/restaurant`,
+      data: data,
+      success: () => {
+        this.getAllTrips();
+        this.updateSelection(this.state.selectedTrip);
+      }
+    });
+  };
+
+  handleEventDelete(event) {
+    var data = {
+      tripId: event.tripId,
+      tripItemId: event.id,
+    };
+    $.ajax({
+      type: 'POST',
+      url: `/delete/event`,
       data: data,
       success: () => {
         this.getAllTrips();
@@ -95,6 +111,21 @@ class MyTripsPageBody extends React.Component {
     const {activeIndex} = this.state
     return (
       <div>
+        <Modal className="ui modal">
+          <i className="close icon"></i>
+          <div className="header">
+            Modal Title
+          </div>
+          <div className="content">
+            <div className="description">
+              Are you sure you want to remove this awesome restaurant from your trip?
+            </div>
+          </div>
+          <div className="actions">
+            <div className="ui button">Cancel</div>
+            <div className="ui button">OK</div>
+          </div>
+        </Modal>
         <Grid columns='equal' style={ { marginTop: 50, backgroundColor: 'white'} }>
           <Grid.Column floated='left' width={3}>
             <SelectTrip
@@ -113,7 +144,7 @@ class MyTripsPageBody extends React.Component {
                   </Accordion.Title>
                   <Accordion.Content active={activeIndex === 0}>
                     <p> </p>
-                    {!this.state.eventsSelected.length ? <p>No Saved Events</p> : <EventsList eventsSelected={this.state.eventsSelected}/>}
+                    {!this.state.eventsSelected.length ? <p>No Saved Events</p> : <EventsList handleDeleteClick={this.handleEventDelete.bind(this)} eventsSelected={this.state.eventsSelected}/>}
                   </Accordion.Content>
                   <Accordion.Title style={ {color: '#d0021b', fontSize: 20} } active={activeIndex === 1} index={1} onClick={this.handleClick.bind(this)}>
                     <Icon name='dropdown' />
@@ -121,7 +152,7 @@ class MyTripsPageBody extends React.Component {
                   </Accordion.Title>
                   <Accordion.Content active={activeIndex === 1}>
                     <p> </p>
-                    {!this.state.restaurantsSelected.length ? <p>No Saved Restaurants</p> : <RestaurantsList handleDeleteClick={this.handleDelete.bind(this)} restaurantsSelected={this.state.restaurantsSelected}/>}
+                    {!this.state.restaurantsSelected.length ? <p>No Saved Restaurants</p> : <RestaurantsList handleDeleteClick={this.handleRestaurantDelete.bind(this)} restaurantsSelected={this.state.restaurantsSelected}/>}
                   </Accordion.Content>
                 </Accordion>
               </Grid.Column>
