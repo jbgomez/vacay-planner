@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from '../NavBar/NavBar.jsx';
 import LandingPageBody from './LandingPageBody.jsx';
+import $ from 'jquery';
 
 class LandingPage extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class LandingPage extends React.Component {
   }
 
   componentDidMount() {
-    this.getAllTrips();
+    if (props.user != '') this.getAllTrips();
   }
 
   getAllTrips() {
@@ -34,20 +35,20 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div>
-        <NavBar user={props.user} />
+        <NavBar user={this.props.user}/>
         <LandingPageBody
           allTrips={this.state.allTrips}
-          history={props.history}
-          address={props.address}
-          handleStartDayChange={props.handleStartDayChange}
-          handleEndDayChange={props.handleEndDayChange}
-          handleLogout={props.handleLogout}
-          handleAddressChange={props.handleAddressChange}
-          handleAddressSelect={props.handleAddressSelect}
-          handleSubmit={props.handleSubmit}
+          history={this.props.history}
+          address={this.props.address}
+          handleStartDayChange={this.props.handleStartDayChange}
+          handleEndDayChange={this.props.handleEndDayChange}
+          handleLogout={this.props.handleLogout}
+          handleAddressChange={this.props.handleAddressChange}
+          handleAddressSelect={this.props.handleAddressSelect}
+          handleSubmit={this.props.handleSubmit}
         />
       </div>
-    );
+    )
   }
 }
 

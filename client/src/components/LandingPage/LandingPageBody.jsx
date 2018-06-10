@@ -3,12 +3,17 @@ import { Card, Grid, Form, Button, Segment, Header } from 'semantic-ui-react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import MomentLocaleUtils, {formatDate, parseDate} from 'react-day-picker/moment';
 import LocationSearchInput from './LocationSearchInput.jsx';
+import LandingPageMyTrips from './LandingPageMyTrips.jsx';
 
 const LandingPageBody = (props) => (
   <Grid verticalAlign='middle' style={ {marginTop: 50} }>
-    <LandingPageMyTrips
-      allTrips={props.allTrips}
-    />
+    {props.allTrips.length ?
+      <LandingPageMyTrips
+        allTrips={props.allTrips}
+      />
+      :
+      null
+    }
     <Grid.Row>
       <Grid.Column style={{ maxWidth: 450}}>
         <Card centered fluid>
