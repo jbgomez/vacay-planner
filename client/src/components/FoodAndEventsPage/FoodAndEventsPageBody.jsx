@@ -1,8 +1,8 @@
 import React from 'react';
 import FoodTabContent from './FoodTabContent.jsx';
 import EventsTabContent from './EventsTabContent.jsx';
-import FoodAndEventsSidebar from './FoodAndEventsSidebar.jsx'
-import { Tab, Grid } from 'semantic-ui-react';
+import FoodAndEventsSidebar from './FoodAndEventsSidebar.jsx';
+import { Button, Tab, Grid } from 'semantic-ui-react';
 import $ from 'jquery';
 
 
@@ -17,6 +17,8 @@ class FoodAndEventsPageBody extends React.Component {
               restaurantList={this.props.restaurantList}
               toggleFavorite={this.props.toggleFavorite}
               foodFavorites={this.props.foodFavorites}
+              sortRestaurantList = {this.props.sortRestaurantList}
+              onRestaurantSort = {this.props.onRestaurantSort}
               />
           </Tab.Pane>
       },
@@ -27,11 +29,18 @@ class FoodAndEventsPageBody extends React.Component {
               eventsList={this.props.eventsList}
               toggleFavorite={this.props.toggleFavorite}
               eventFavorites={this.props.eventFavorites}
+              sortEventList = {this.props.sortEventList}
+              onEventSort = {this.props.onEventSort}
             />
           </Tab.Pane>
       }
     ]
-    return <Tab panes={panes} />;
+    return (
+      <div>
+        <Tab panes={panes} />
+
+      </div>
+    );
   }
 }
 
