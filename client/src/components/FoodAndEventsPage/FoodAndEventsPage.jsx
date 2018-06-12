@@ -21,12 +21,6 @@ class FoodAndEventsPage extends React.Component {
                             sortBy: 'rating'},
                             {label: 'Review',
                             sortBy: 'review_count'}],
-      filterResList: [{label: 'Best Match',
-                      sortBy: 'best_match'},
-                      {label: 'Ratings',
-                      sortBy: 'rating'},
-                      {label: 'Review',
-                      sortBy: 'review_count'}],
       sortEventList: [{label: 'Date',
                       sortBy: 'date,desc'},
                       {label: 'Name',
@@ -39,6 +33,7 @@ class FoodAndEventsPage extends React.Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.onRestaurantSort = this.onRestaurantSort.bind(this);
     this.onEventSort = this.onEventSort.bind(this);
+    this.filterRestaurants = this.filterRestaurants.bind(this);
   }
 
   toggleFavorite(listIndex, listName) {
@@ -113,6 +108,27 @@ class FoodAndEventsPage extends React.Component {
     });
   }
 
+  filterRestaurants(criteria) {
+    // console.log('criteria >>>' + JSON.stringify({ 'price': criteria.price,
+    //           location: this.props.latLng,
+    //           open_now: criteria.open_now
+    //         }));
+    $.ajax({
+      type: 'GET',
+      url: '/restaurants',
+      data: { 'price': criteria.price,
+              location: this.props.latLng,
+              open_now: criteria.open_now
+            },
+      dataType: 'json',
+      success: result => {
+        this.setState({
+          restaurantList: result.businesses
+        });
+      }
+    });
+  }
+
   getEventsByLocationAndDate(sortCriteria) {
     $.ajax({
       type: 'GET',
@@ -163,6 +179,7 @@ class FoodAndEventsPage extends React.Component {
               onRestaurantSort = {this.onRestaurantSort}
               sortEventList = {this.state.sortEventList}
               onEventSort = {this.onEventSort}
+              filterRestaurants = {this.filterRestaurants}
             />
           </Grid.Column>
           <Grid.Column width={6}>

@@ -25,7 +25,9 @@ class FilterButton extends Component {
 
   onFilter() {
     // call filter method
-    // Number(this.state.priceRange)
+    const filterCriteria = {'price': Number(this.state.priceRange),
+                         'open_now': this.state.openNow};
+    this.props.filterRestaurants(filterCriteria);
     this.close();
   }
 
@@ -52,6 +54,15 @@ class FilterButton extends Component {
           <Modal.Content>
             <p>Price Range: </p>
             <Form>
+              <Checkbox
+                radio
+                label='$$$$$'
+                name='checkboxRadioGroup'
+                value= '5'
+                checked={this.state.priceRange === '5'}
+                onChange={this.updatePriceRange}
+              />
+              <span>    </span>
               <Checkbox
                 radio
                 label='$$$$'
@@ -89,7 +100,7 @@ class FilterButton extends Component {
               />
             </Form>
             <p></p>
-            <Checkbox label='Open Now' onChange={this.updateOpenNow} defaultChecked/>
+            <Checkbox label='Open Now' checked = {this.state.openNow} onChange={this.updateOpenNow}/>
           </Modal.Content>
           <Modal.Actions>
             <Button positive onClick = {this.onFilter}>Yes</Button>

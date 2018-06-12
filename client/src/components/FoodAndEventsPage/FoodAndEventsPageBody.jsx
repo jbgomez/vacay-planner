@@ -19,6 +19,7 @@ class FoodAndEventsPageBody extends React.Component {
               foodFavorites={this.props.foodFavorites}
               sortRestaurantList = {this.props.sortRestaurantList}
               onRestaurantSort = {this.props.onRestaurantSort}
+              filterRestaurants = {this.props.filterRestaurants}
               />
           </Tab.Pane>
       },
