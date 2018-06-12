@@ -14,11 +14,25 @@ class FoodAndEventsPage extends React.Component {
       eventsList: [],
       foodFavorites: [],
       eventFavorites: [],
-      tripName: ""
+      tripName: "",
+      sortRestaurantList: [{label: 'Best Match',
+                            sortBy: 'best_match'},
+                            {label: 'Ratings',
+                            sortBy: 'rating'},
+                            {label: 'Review',
+                            sortBy: 'review_count'}],
+      sortEventList: [{label: 'Date',
+                      sortBy: 'date,desc'},
+                      {label: 'Name',
+                      sortBy: 'name,asc'},
+                      {label: 'Relevance',
+                      sortBy: 'relevance,desc'}]
     };
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.saveTrip = this.saveTrip.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.onRestaurantSort = this.onRestaurantSort.bind(this);
+    this.onEventSort = this.onEventSort.bind(this);
   }
 
   toggleFavorite(listIndex, listName) {
@@ -112,6 +126,14 @@ class FoodAndEventsPage extends React.Component {
     });
   }
 
+  onRestaurantSort(sortByCriteria){
+    this.getRestaurantsByLocation(sortByCriteria);
+  }
+
+  onEventSort(sortByCriteria){
+    this.getEventsByLocationAndDate(sortByCriteria);
+  }
+
   render() {
     return (
       //Column width must add up to 16
@@ -131,6 +153,10 @@ class FoodAndEventsPage extends React.Component {
               foodFavorites={this.state.foodFavorites}
               eventFavorites={this.state.eventFavorites}
               toggleFavorite={this.toggleFavorite}
+              sortRestaurantList = {this.state.sortRestaurantList}
+              onRestaurantSort = {this.onRestaurantSort}
+              sortEventList = {this.state.sortEventList}
+              onEventSort = {this.onEventSort}
             />
           </Grid.Column>
           <Grid.Column width={6}>

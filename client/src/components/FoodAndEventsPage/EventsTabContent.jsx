@@ -1,10 +1,16 @@
 import React from 'react';
 import moment from 'moment';
 import SaveButton from '../Buttons/SaveButton.jsx';
-import { Button, Card, Image, Item, Label } from 'semantic-ui-react';
+import SortButton from '../Buttons/SortButton.jsx';
+import { Button, Card, Image, Item, Label, Grid } from 'semantic-ui-react';
 
 const EventsTabContent = (props) => (
   <div>
+    <Grid style={ {marginTop: 10} }>
+      <Grid.Row style={ {height: 50} }>
+        <SortButton sortList = {props.sortEventList} onSort = {props.onEventSort}/>
+      </Grid.Row>
+    </Grid>
     {props.eventsList.map((event, index) => {
       return (
         <Card fluid key={event.id}>
@@ -21,10 +27,10 @@ const EventsTabContent = (props) => (
                 </Item.Header>
                 <Item.Description>
                   <strong>{event._embedded.venues[0].name}</strong>
-                  {`,                    
-                  ${event._embedded.venues[0].address.line1}, 
+                  {`,
+                  ${event._embedded.venues[0].address.line1},
                   ${event._embedded.venues[0].city.name},
-                  ${event._embedded.venues[0].state.stateCode}  
+                  ${event._embedded.venues[0].state.stateCode}
                   ${event._embedded.venues[0].postalCode}`
                   }
                 </Item.Description>
@@ -34,7 +40,7 @@ const EventsTabContent = (props) => (
                   >
                     {moment(event.dates.start.dateTime).format('MMM DD ddd')}
                   </Label>
-                  < SaveButton
+                  <SaveButton
                     toggleFavorite={() => props.toggleFavorite(index, 'events')}
                     isSaved={props.eventFavorites.find(eventfav => eventfav.id === event.id) ? true : false}
                   />

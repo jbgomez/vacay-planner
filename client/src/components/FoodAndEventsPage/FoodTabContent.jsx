@@ -1,9 +1,15 @@
 import React from 'react';
 import SaveButton from '../Buttons/SaveButton.jsx';
-import { Button, Card, Image, Icon, Item } from 'semantic-ui-react';
+import { Button, Card, Image, Icon, Item, Grid} from 'semantic-ui-react';
+import SortButton from '../Buttons/SortButton.jsx';
 
 const FoodTabContent = (props) => (
   <div>
+    <Grid style={ {marginTop: 10} }>
+      <Grid.Row style={ {height: 50} }>
+        <SortButton sortList = {props.sortRestaurantList} onSort = {props.onRestaurantSort}/>
+      </Grid.Row>
+    </Grid>
     {props.restaurantList.map((restaurant, index) => {
       return (
         <Card fluid key={restaurant.id}>
@@ -52,3 +58,4 @@ const FoodTabContent = (props) => (
 )
 
 export default FoodTabContent;
+
