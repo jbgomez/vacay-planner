@@ -122,7 +122,6 @@ class FoodAndEventsPage extends React.Component {
         this.setState({
           restaurantList: result.businesses
         });
-        console.log('RESULT>>>' + JSON.stringify(result));
       }
     });
   }

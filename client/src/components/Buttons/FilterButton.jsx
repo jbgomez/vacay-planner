@@ -32,7 +32,6 @@ class FilterButton extends Component {
   }
 
   updatePriceRange(e, price) {
-    console.log('priceRange>>' + price.value);
     this.setState({priceRange: price.value})
   }
 
