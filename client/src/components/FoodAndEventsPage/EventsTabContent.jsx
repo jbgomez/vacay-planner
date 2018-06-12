@@ -9,7 +9,6 @@ const EventsTabContent = (props) => (
   <div>
     <Grid style={ {marginTop: 10} }>
       <Grid.Row style={ {height: 50} }>
-        <FilterButton />
         <SortButton sortList = {props.sortEventList} onSort = {props.onEventSort}/>
       </Grid.Row>
     </Grid>
