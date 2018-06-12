@@ -7,9 +7,9 @@ import LandingPageMyTrips from './LandingPageMyTrips.jsx';
 
 const LandingPageBody = (props) => (
   <Grid verticalAlign='middle' style={ {marginTop: 50} }>
-    {props.allTrips.length ?
+    {props.trips.length ?
       <LandingPageMyTrips
-        allTrips={props.allTrips}
+        trips={props.trips}
       />
       :
       null
