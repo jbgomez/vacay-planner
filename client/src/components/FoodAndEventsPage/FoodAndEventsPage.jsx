@@ -109,22 +109,20 @@ class FoodAndEventsPage extends React.Component {
   }
 
   filterRestaurants(criteria) {
-    // console.log('criteria >>>' + JSON.stringify({ 'price': criteria.price,
-    //           location: this.props.latLng,
-    //           open_now: criteria.open_now
-    //         }));
     $.ajax({
       type: 'GET',
       url: '/restaurants',
-      data: { 'price': criteria.price,
-              location: this.props.latLng,
-              open_now: criteria.open_now
-            },
+      data: {
+        price: criteria.price,
+        location: this.props.latLng,
+        open_now: criteria.open_now
+      },
       dataType: 'json',
       success: result => {
         this.setState({
           restaurantList: result.businesses
         });
+        console.log('RESULT>>>' + JSON.stringify(result));
       }
     });
   }

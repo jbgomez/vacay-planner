@@ -25,7 +25,7 @@ class FilterButton extends Component {
 
   onFilter() {
     // call filter method
-    const filterCriteria = {'price': Number(this.state.priceRange),
+    const filterCriteria = {'price': this.state.priceRange,
                          'open_now': this.state.openNow};
     this.props.filterRestaurants(filterCriteria);
     this.close();
