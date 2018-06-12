@@ -2,11 +2,13 @@ import React from 'react';
 import SaveButton from '../Buttons/SaveButton.jsx';
 import { Button, Card, Image, Icon, Item, Grid} from 'semantic-ui-react';
 import SortButton from '../Buttons/SortButton.jsx';
+import FilterButton from '../Buttons/FilterButton.jsx';
 
 const FoodTabContent = (props) => (
   <div>
     <Grid style={ {marginTop: 10} }>
       <Grid.Row style={ {height: 50} }>
+        <FilterButton />
         <SortButton sortList = {props.sortRestaurantList} onSort = {props.onRestaurantSort}/>
       </Grid.Row>
     </Grid>
