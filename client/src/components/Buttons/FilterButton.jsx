@@ -6,11 +6,13 @@ class FilterButton extends Component {
     super(props);
     this.state = {size: 'small',
                   open: false,
-                  priceRange: '2'};
+                  priceRange: '2',
+                  openNow: true};
     this.show = this.show.bind(this);
     this.close = this.close.bind(this);
     this.onFilter = this.onFilter.bind(this);
     this.updatePriceRange = this.updatePriceRange.bind(this);
+    this.updateOpenNow = this.updateOpenNow.bind(this);
   }
 
   show() {
@@ -30,6 +32,11 @@ class FilterButton extends Component {
   updatePriceRange(e, price) {
     console.log('priceRange>>' + price.value);
     this.setState({priceRange: price.value})
+  }
+
+  updateOpenNow() {
+    const openNow = !this.state.openNow;
+    this.setState({openNow: openNow})
   }
 
   // recordRating(event, data) {
@@ -81,6 +88,8 @@ class FilterButton extends Component {
                 onChange={this.updatePriceRange}
               />
             </Form>
+            <p></p>
+            <Checkbox label='Open Now' onChange={this.updateOpenNow} defaultChecked/>
           </Modal.Content>
           <Modal.Actions>
             <Button positive onClick = {this.onFilter}>Yes</Button>
