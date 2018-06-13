@@ -24,16 +24,20 @@ class FoodAndEventsPageBody extends React.Component {
           </Tab.Pane>
       },
       {
-        menuItem: 'Events', render: () =>
-        <Tab.Pane>
-            <EventsTabContent
-              eventsList={this.props.eventsList}
-              toggleFavorite={this.props.toggleFavorite}
-              eventFavorites={this.props.eventFavorites}
-              sortEventList = {this.props.sortEventList}
-              onEventSort = {this.props.onEventSort}
-            />
+        menuItem: 'Events', render: () => (
+          <Tab.Pane>
+            {this.props.eventsList.length
+              ? (<EventsTabContent
+                    eventsList={this.props.eventsList}
+                    toggleFavorite={this.props.toggleFavorite}
+                    eventFavorites={this.props.eventFavorites}
+                    sortEventList = {this.props.sortEventList}
+                    onEventSort = {this.props.onEventSort}
+                  />)
+              : <h2 style={{color: '#d0021b', textAlign: 'center'}}>No events found.</h2>
+            }
           </Tab.Pane>
+        )
       }
     ]
     return (
