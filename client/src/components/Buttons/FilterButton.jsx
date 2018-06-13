@@ -7,7 +7,7 @@ class FilterButton extends Component {
     this.state = {size: 'small',
                   open: false,
                   priceRange: '2',
-                  openNow: true};
+                  openNow: false};
     this.show = this.show.bind(this);
     this.close = this.close.bind(this);
     this.onFilter = this.onFilter.bind(this);
@@ -24,7 +24,6 @@ class FilterButton extends Component {
   }
 
   onFilter() {
-    // call filter method
     const filterCriteria = {'price': this.state.priceRange,
                          'open_now': this.state.openNow};
     this.props.filterRestaurants(filterCriteria);
@@ -39,10 +38,6 @@ class FilterButton extends Component {
     const openNow = !this.state.openNow;
     this.setState({openNow: openNow})
   }
-
-  // recordRating(event, data) {
-  //   this.setState({rating: data.rating});
-  // }
 
   render() {
     return (
@@ -111,7 +106,5 @@ class FilterButton extends Component {
 }
 
 export default FilterButton
-
-// <Rating maxRating={5} clearable onRate = {this.recordRating} />
 
 
