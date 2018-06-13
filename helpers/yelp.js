@@ -14,11 +14,13 @@ module.exports = {
         'latitude': query.location.lat,
         'longitude': query.location.lng,
         'term': 'restaurants',
-        'sort_by': query.sortBy
+        'sort_by': query.sortBy,
+        'open_now': query.open_now,
+        'price': query.price
       }
     };
     request.get(options, (err, res, body) => {
-      err ? console.log('err') : callback(body);
+      err ? console.log('getRestaurants >>>>>>>>>>>>>>>>>> error') : callback(body);
     })
   }
 }
