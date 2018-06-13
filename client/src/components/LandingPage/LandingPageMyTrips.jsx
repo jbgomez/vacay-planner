@@ -10,8 +10,8 @@ const LandingPageMyTrips = (props) => {
         <Card centered fluid>
           <Card.Content header='Upcoming Trips'/>
           <Card.Content extra>
-            {props.trips.map(trip => {
-              return(<MyTripsEntry trip={trip}/>);
+            {props.trips.map((trip, i) => {
+              return(<MyTripsEntry trip={trip} key={i}/>);
             })}
           </Card.Content>
         </Card>
