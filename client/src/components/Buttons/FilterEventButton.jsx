@@ -66,7 +66,6 @@ class FilterEventButton extends Component {
                 checked={this.state.includeFamily === 'only'}
                 onChange={this.updateIncludeFamily}
               />
-
             </Form>
             <p></p>
           </Modal.Content>
