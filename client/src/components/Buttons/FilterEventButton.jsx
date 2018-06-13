@@ -51,7 +51,7 @@ class FilterEventButton extends Component {
                 radio
                 label='yes'
                 name='checkboxRadioGroup'
-                value= 'yes'
+                value='yes'
                 checked={this.state.includeFamily === 'yes'}
                 onChange={this.updateIncludeFamily}
               />
@@ -60,7 +60,7 @@ class FilterEventButton extends Component {
                 radio
                 label='no'
                 name='checkboxRadioGroup'
-                value= 'no'
+                value='no'
                 checked={this.state.includeFamily === 'no'}
                 onChange={this.updateIncludeFamily}
               />
@@ -69,7 +69,7 @@ class FilterEventButton extends Component {
                 radio
                 label='only'
                 name='checkboxRadioGroup'
-                value= 'only'
+                value='only'
                 checked={this.state.includeFamily === 'only'}
                 onChange={this.updateIncludeFamily}
               />
@@ -81,7 +81,7 @@ class FilterEventButton extends Component {
                 radio
                 label='ticketmaster'
                 name='checkboxRadioGroup'
-                value= 'ticketmaster'
+                value='ticketmaster'
                 checked={this.state.source === 'ticketmaster'}
                 onChange={this.updateSource}
               />
@@ -90,7 +90,7 @@ class FilterEventButton extends Component {
                 radio
                 label='universe'
                 name='checkboxRadioGroup'
-                value= 'universe'
+                value='universe'
                 checked={this.state.source === 'universe'}
                 onChange={this.updateSource}
               />
@@ -99,7 +99,7 @@ class FilterEventButton extends Component {
                 radio
                 label='frontgate'
                 name='checkboxRadioGroup'
-                value= 'frontgate'
+                value='frontgate'
                 checked={this.state.source === 'frontgate'}
                 onChange={this.updateSource}
               />
@@ -108,14 +108,14 @@ class FilterEventButton extends Component {
                 radio
                 label='tmr'
                 name='checkboxRadioGroup'
-                value= 'tmr'
+                value='tmr'
                 checked={this.state.source === 'tmr'}
                 onChange={this.updateSource}
               />
             </Form>
           </Modal.Content>
           <Modal.Actions>
-            <Button positive onClick = {this.onFilter}>Filter</Button>
+            <Button positive onClick={this.onFilter}>Filter</Button>
           </Modal.Actions>
         </Modal>
       </div>

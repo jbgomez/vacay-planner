@@ -8,8 +8,8 @@ const FoodTabContent = (props) => (
   <div>
     <Grid style={ {marginTop: 10} }>
       <Grid.Row style={ {height: 50} }>
-        <FilterRestaurantButton filterRestaurants = {props.filterRestaurants}/>
-        <SortButton sortList = {props.sortRestaurantList} onSort = {props.onRestaurantSort}/>
+        <FilterRestaurantButton filterRestaurants={props.filterRestaurants}/>
+        <SortButton sortList={props.sortRestaurantList} onSort={props.onRestaurantSort}/>
       </Grid.Row>
     </Grid>
     {props.restaurantList.map((restaurant, index) => {

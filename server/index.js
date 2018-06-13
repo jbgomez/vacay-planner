@@ -71,6 +71,8 @@ app.get('/events', (req, res) => {
   let endDate = new Date(eventsQuery.endDate).toISOString().split('.')[0]+'Z';
   let location = eventsQuery.location;
   let sort = eventsQuery.sort;
+  let source = eventsQuery.source;
+  let includeFamily = eventsQuery.includeFamily;
 
   let options = {
     startDate: startDate,
@@ -80,7 +82,9 @@ app.get('/events', (req, res) => {
     countryCode: location.countryCode,
     size: 30,
     radius: '500',
-    sort: sort
+    sort: sort,
+    source: source,
+    includeFamily: includeFamily
   };
 
   tm(options, (data) => res.status(200).end(JSON.stringify(data)));
