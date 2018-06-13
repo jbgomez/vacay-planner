@@ -52,7 +52,7 @@ class FilterRestaurantButton extends Component {
                 radio
                 label='$$$$$'
                 name='checkboxRadioGroup'
-                value= '5'
+                value='5'
                 checked={this.state.priceRange === '5'}
                 onChange={this.updatePriceRange}
               />
@@ -61,7 +61,7 @@ class FilterRestaurantButton extends Component {
                 radio
                 label='$$$$'
                 name='checkboxRadioGroup'
-                value= '4'
+                value='4'
                 checked={this.state.priceRange === '4'}
                 onChange={this.updatePriceRange}
               />
@@ -70,7 +70,7 @@ class FilterRestaurantButton extends Component {
                 radio
                 label='$$$'
                 name='checkboxRadioGroup'
-                value= '3'
+                value='3'
                 checked={this.state.priceRange === '3'}
                 onChange={this.updatePriceRange}
               />
@@ -79,7 +79,7 @@ class FilterRestaurantButton extends Component {
                 radio
                 label='$$'
                 name='checkboxRadioGroup'
-                value= '2'
+                value='2'
                 checked={this.state.priceRange === '2'}
                 onChange={this.updatePriceRange}
               />
@@ -88,16 +88,16 @@ class FilterRestaurantButton extends Component {
                 radio
                 label='$'
                 name='checkboxRadioGroup'
-                value= '1'
+                value='1'
                 checked={this.state.priceRange === '1'}
                 onChange={this.updatePriceRange}
               />
             </Form>
             <p></p>
-            <Checkbox label='Open Now' checked = {this.state.openNow} onChange={this.updateOpenNow}/>
+            <Checkbox label='Open Now' checked={this.state.openNow} onChange={this.updateOpenNow}/>
           </Modal.Content>
           <Modal.Actions>
-            <Button positive onClick = {this.onFilter}>Yes</Button>
+            <Button positive onClick={this.onFilter}>Filter</Button>
           </Modal.Actions>
         </Modal>
       </div>
