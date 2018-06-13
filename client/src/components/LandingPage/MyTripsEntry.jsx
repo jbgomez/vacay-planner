@@ -4,7 +4,7 @@ import MomentLocaleUtils, {formatDate, parseDate} from 'react-day-picker/moment'
 
 const MyTripsEntry = (props) => {
   return (
-    <Segment stacked>
+    <Segment>
       {props.trip.tripName}
       <br/>
     </Segment>

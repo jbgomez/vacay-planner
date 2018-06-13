@@ -37,7 +37,7 @@ class LandingPage extends React.Component {
       <div>
         <NavBar user={this.props.user}/>
         <LandingPageBody
-          allTrips={this.state.allTrips}
+          trips={this.state.allTrips}
           history={this.props.history}
           address={this.props.address}
           handleStartDayChange={this.props.handleStartDayChange}
