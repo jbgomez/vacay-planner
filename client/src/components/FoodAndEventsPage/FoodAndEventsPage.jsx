@@ -138,9 +138,11 @@ class FoodAndEventsPage extends React.Component {
       },
       dataType: 'json',
       success: result => {
-        this.setState({
-          eventsList: result
-        });
+        if (result) {
+          this.setState({
+            eventsList: result
+          });
+        }
       }
     });
   }
