@@ -6,11 +6,13 @@ class FilterEventButton extends Component {
     super(props);
     this.state = {size: 'small',
                   open: false,
-                  includeFamily: 'yes'};
+                  includeFamily: 'yes',
+                  source: undefined};
     this.show = this.show.bind(this);
     this.close = this.close.bind(this);
     this.onFilter = this.onFilter.bind(this);
     this.updateIncludeFamily = this.updateIncludeFamily.bind(this);
+    this.updateSource = this.updateSource.bind(this);
   }
 
   show() {
@@ -22,13 +24,18 @@ class FilterEventButton extends Component {
   }
 
   onFilter() {
-    const filterCriteria = {'includeFamily': this.state.includeFamily};
+    const filterCriteria = {'includeFamily': this.state.includeFamily,
+                            'source' : this.state.source};
     this.props.filterEvents(filterCriteria);
     this.close();
   }
 
   updateIncludeFamily(e, data) {
     this.setState({includeFamily: data.value})
+  }
+
+  updateSource(e, data) {
+    this.setState({source: data.value})
   }
 
   render() {
@@ -68,6 +75,44 @@ class FilterEventButton extends Component {
               />
             </Form>
             <p></p>
+            <p>Select Source</p>
+            <Form>
+              <Checkbox
+                radio
+                label='ticketmaster'
+                name='checkboxRadioGroup'
+                value= 'ticketmaster'
+                checked={this.state.source === 'ticketmaster'}
+                onChange={this.updateSource}
+              />
+              <span>    </span>
+              <Checkbox
+                radio
+                label='universe'
+                name='checkboxRadioGroup'
+                value= 'universe'
+                checked={this.state.source === 'universe'}
+                onChange={this.updateSource}
+              />
+              <span>    </span>
+              <Checkbox
+                radio
+                label='frontgate'
+                name='checkboxRadioGroup'
+                value= 'frontgate'
+                checked={this.state.source === 'frontgate'}
+                onChange={this.updateSource}
+              />
+              <span>    </span>
+              <Checkbox
+                radio
+                label='tmr'
+                name='checkboxRadioGroup'
+                value= 'tmr'
+                checked={this.state.source === 'tmr'}
+                onChange={this.updateSource}
+              />
+            </Form>
           </Modal.Content>
           <Modal.Actions>
             <Button positive onClick = {this.onFilter}>Filter</Button>
