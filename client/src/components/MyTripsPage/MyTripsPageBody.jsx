@@ -10,52 +10,53 @@ import $ from 'jquery';
 class MyTripsPageBody extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      selectedTrip: 1,
       allTrips: [],
       eventsSelected: [],
       restaurantsSelected: [],
       activeIndex: null
-    }
-    this.updateSelection = this.updateSelection.bind(this);
+    };
+
+    this.getSelectedTripLists = this.getSelectedTripLists.bind(this);
   }
 
   componentDidMount() {
-    this.getAllTrips();
-    this.updateSelection(this.state.selectedTrip);
-  }
-
-  handleClick(e, titleProps) {
-    const { index } = titleProps
-    const { activeIndex } = this.state
-    const newIndex = activeIndex === index ? -1 : index
-
-    this.setState({
-      activeIndex: newIndex
-    })
-    this.updateSelection(this.state.selectedTrip)
-  }
-
-  updateSelection(tripId) {
-    this.setState(() => {
-      return {
-        selectedTrip: tripId
+    $.ajax({
+      type: 'GET',
+      url: `/trips`,
+      success: results => {
+        results = JSON.parse(results);
+        
+        if (results.length) {
+          this.setState({allTrips: results}, () => this.getSelectedTripLists(results[0].id));
+        }
       }
-    })
-    this.getTripDetailsById(tripId);
+    });
   }
 
-  getTripDetailsById(tripId) {
+  getSelectedTripLists(tripId) {
     $.ajax({
       type: 'GET',
       url: `/trips/${tripId}`,
       success: result => {
         this.setState({
+          selectedTrip: tripId,
           eventsSelected: JSON.parse(result).events,
           restaurantsSelected: JSON.parse(result).restaurants
         })
       }
-    })
+    });
+  }
+
+  handleClick(e, titleProps) {
+    const { index } = titleProps;
+    const { activeIndex } = this.state;
+    const newIndex = activeIndex === index ? -1 : index;
+
+    this.setState({
+      activeIndex: newIndex
+    });
   }
 
   handleRestaurantDelete(restaurant) {
@@ -68,11 +69,14 @@ class MyTripsPageBody extends React.Component {
       url: `/delete/restaurant`,
       data: data,
       success: () => {
-        this.getAllTrips();
-        this.updateSelection(this.state.selectedTrip);
+        this.setState(prevState => {
+          return {
+            restaurantsSelected: prevState.restaurantsSelected.filter(rest => rest.id !== restaurant.id)
+          };
+        });
       }
     });
-  };
+  }
 
   handleEventDelete(event) {
     var data = {
@@ -84,27 +88,13 @@ class MyTripsPageBody extends React.Component {
       url: `/delete/event`,
       data: data,
       success: () => {
-        this.getAllTrips();
-        this.updateSelection(this.state.selectedTrip);
+        this.setState(prevState => {
+          return {
+            eventsSelected: prevState.eventsSelected.filter(ev => ev.id !== event.id)
+          };
+        });
       }
     });
-  };
-
-  getAllTrips() {
-    $.ajax({
-      type: 'GET',
-      url: `/trips`,
-      success: result => {
-        JSON.parse(result).length ?
-          (
-            this.setState({
-              selectedTrip: JSON.parse(result)[0].id,
-              allTrips: JSON.parse(result)
-            })
-          )
-          : ''
-      }
-    })
   }
 
   render() {
@@ -131,7 +121,7 @@ class MyTripsPageBody extends React.Component {
             <SelectTrip
               selectedTrip = {this.state.selectedTrip}
               allTrips =  {this.state.allTrips}
-              onSelect = {this.updateSelection}
+              onSelect = {this.getSelectedTripLists}
             />
           </Grid.Column>
           {this.state.allTrips.length ?
