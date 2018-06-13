@@ -29,7 +29,7 @@ class MyTripsPageBody extends React.Component {
         results = JSON.parse(results);
         
         if (results.length) {
-          this.setState({ allTrips: results}, () => this.getSelectedTripLists(results[0].id));
+          this.setState({allTrips: results}, () => this.getSelectedTripLists(results[0].id));
         }
       }
     });
