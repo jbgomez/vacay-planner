@@ -2,7 +2,6 @@ import React from 'react';
 import moment from 'moment';
 import SaveButton from '../Buttons/SaveButton.jsx';
 import SortButton from '../Buttons/SortButton.jsx';
-import FilterButton from '../Buttons/FilterButton.jsx';
 import { Button, Card, Image, Item, Label, Grid } from 'semantic-ui-react';
 
 const EventsTabContent = (props) => (
