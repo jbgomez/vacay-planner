@@ -29,7 +29,8 @@ class FoodAndEventsPage extends React.Component {
                       sortBy: 'relevance,desc'}],
       restaurantListViewActive: true,
       eventListViewActive: true,
-      restMapLog: []
+      restMapLog: [],
+      eventMapLog: []
     };
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.saveTrip = this.saveTrip.bind(this);
@@ -255,11 +256,100 @@ class FoodAndEventsPage extends React.Component {
   }
 
   showEventMapView() {
+    // if map view is not active (if list view *is* active)
+    if (this.state.eventListViewActive) {
+      // deactivate list view
+      this.setState({eventListViewActive: false}, () => {
+        // init map
+        const map = new google.maps.Map(document.querySelector('#event-map-view'), {
+          zoom: 11,
+          center: this.props.latLng
+        });
+        
+        // init popup info window for map markers
+        const infowindow = new google.maps.InfoWindow();
 
+        // events may share same venues so we will have to group them into the same marker/info window
+        const venues = {};
+
+        // iterate through eventsList and bundle each event into single venue object
+        this.state.eventsList.forEach((event, i) => {
+          // capture venue data from event
+          const venue = event._embedded.venues[0];
+
+          // if venue does not yet exist in venues object
+          if (!venues.hasOwnProperty(venue.name)) {
+            // init venue key and add object with empty nodes array and lat & lng of venue
+            venues[venue.name] = {
+              nodes: [],
+              latLng: { 
+                lat: parseFloat(venue.location.latitude),
+                lng: parseFloat(venue.location.longitude)
+              }
+            };
+          }
+
+          // capture inner item element from card in list view
+          const node = document.querySelector(`[data-event-id='${i}']`);
+          // log node reference and index by pushing to nodes group by venue name for returning node back to list on view change
+          venues[venue.name].nodes.push({
+            node: node,
+            index: i
+          });
+        });
+
+        // iterate through venues and create markers and click event handlers
+        for (const venue in venues) {
+          // create marker and apply to map using lat & lng from venue
+          const marker = new google.maps.Marker({
+            position: venues[venue].latLng,
+            map: map
+          });
+
+          // add click event listener
+          marker.addListener('click', () => {
+            // create div wrapper for all events of this venue
+            const parentNode = document.createElement('div');
+            parentNode.style.paddingRight = '1em';
+
+            // iterate through event nodes and append to wrapper, add <hr> divider after each node
+            const content = venues[venue].nodes.forEach(node => {
+              parentNode.appendChild(node.node);
+              parentNode.appendChild(document.createElement('hr'));
+            });
+
+            // set popup info window content with collection of node events
+            // note: this actually removes the item elements from the list view in the DOM. We will return them back when the view changes back to list view.
+            infowindow.setContent(parentNode);
+
+            // open info window
+            infowindow.open(map, marker);
+
+            // log collection of nodes for this venue for returning them back to list on view change
+            this.setState({eventMapLog: this.state.eventMapLog.concat(venues[venue].nodes)});
+          });
+        }
+      });
+    }
   }
 
   showEventListView() {
+    // if list view is not active (if map view *is* active)
+    if (!this.state.eventListViewActive) {
+      // iterate through log of captured item nodes from list view
+      this.state.eventMapLog.forEach(event => {
+        // select parent node from list view
+        const wrapper = document.querySelector(`[data-event-wrapper-id='${event.index}']`);
+        // return previously removed item node to list view
+        wrapper.appendChild(event.node);
+      });
 
+      // activate list view, reset log of borrowed DOM elements from list view
+      this.setState({
+        eventListViewActive: true,
+        eventMapLog: []
+      });
+    }
   }
 
   render() {
