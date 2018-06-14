@@ -7,7 +7,7 @@ import { Button, Card, Image, Item, Label, Grid } from 'semantic-ui-react';
 
 const EventsTabContent = (props) => (
   <div>
-    <Grid style={{marginLeft: '0'}}>
+    <Grid>
       <Grid.Row>
         <Grid.Column floated="left" textAlign="left" width={5}>
           <Button.Group>
