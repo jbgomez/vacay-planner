@@ -1,13 +1,25 @@
 import React from 'react';
-import { Card, Grid, Form, Button, Segment, Header } from 'semantic-ui-react';
+import { Grid, Card, Icon, Divider, Segment } from 'semantic-ui-react';
 import MomentLocaleUtils, {formatDate, parseDate} from 'react-day-picker/moment';
 
 const MyTripsEntry = (props) => {
   return (
-    <Segment>
-      {props.trip.tripName}
-      <br/>
-    </Segment>
+    <div>
+      <Grid.row>{props.trip.tripName}</Grid.row>
+      <Grid columns={3} relaxed>
+        <Grid.Column>
+          <Segment basic>Edit</Segment>
+        </Grid.Column>
+        <Divider vertical>Or</Divider>
+        <Grid.Column>
+          <Segment basic><Icon name='share'/>Share</Segment>
+        </Grid.Column>
+        <Divider vertical>And</Divider>
+        <Grid.Column>
+          <Segment basic>All Trips</Segment>
+        </Grid.Column>
+      </Grid>
+    </div>
   );
 }
 
