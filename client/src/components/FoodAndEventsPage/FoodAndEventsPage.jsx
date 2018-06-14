@@ -28,7 +28,8 @@ class FoodAndEventsPage extends React.Component {
                       {label: 'Relevance',
                       sortBy: 'relevance,desc'}],
       restaurantListViewActive: true,
-      eventListViewActive: true
+      eventListViewActive: true,
+      restMapLog: []
     };
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.saveTrip = this.saveTrip.bind(this);
@@ -185,11 +186,72 @@ class FoodAndEventsPage extends React.Component {
   }
 
   showRestaurantMapView() {
+    // if map view is not active (if list view *is* active)
+    if (this.state.restaurantListViewActive) {
+      // deactivate list view
+      this.setState({restaurantListViewActive: false}, () => {
+        // init map
+        const map = new google.maps.Map(document.querySelector('#restaurant-map-view'), {
+          zoom: 12,
+          center: this.props.latLng
+        });
+        
+        // init popup info window for map markers
+        const infowindow = new google.maps.InfoWindow();
 
+        // iterate through restaurant list and create markers and click event handlers
+        this.state.restaurantList.forEach((rest, i) => {
+          // capture inner item element from card in list view
+          const node = document.querySelector(`[data-rest-id='${i}']`);
+
+          // create marker and apply to map using lat & lng from restaurant
+          const marker = new google.maps.Marker({
+            position: { 
+              lat: rest.coordinates.latitude,
+              lng: rest.coordinates.longitude
+            },
+            map: map
+          });
+
+          // add click event listener
+          marker.addListener('click', () => {
+            // set popup info window content with captured node
+            // note: this actually removes the item element from the list view in the DOM. We will return it back when the view changes back to list view.
+            infowindow.setContent(node);
+
+            // open info window
+            infowindow.open(map, marker);
+
+            // log node reference and index for returning node back to list on view change
+            const nodeData = {
+              node: node,
+              index: i
+            };
+
+            this.setState({restMapLog: this.state.restMapLog.concat([nodeData])});
+          });
+        });
+      });
+    }
   }
 
   showRestaurantListView() {
+    // if list view is not active (if map view *is* active)
+    if (!this.state.restaurantListViewActive) {
+      // iterate through log of captured item nodes from list view
+      this.state.restMapLog.forEach(rest => {
+        // select parent node from list view
+        const wrapper = document.querySelector(`[data-rest-wrapper-id='${rest.index}']`);
+        // return previously removed item node to list view
+        wrapper.appendChild(rest.node);
+      });
 
+      // activate list view, reset log of borrowed DOM elements from list view
+      this.setState({
+        restaurantListViewActive: true,
+        restMapLog: []
+      });
+    }
   }
 
   showEventMapView() {
