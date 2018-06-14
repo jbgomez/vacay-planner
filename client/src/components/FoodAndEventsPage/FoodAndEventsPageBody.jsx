@@ -17,9 +17,9 @@ class FoodAndEventsPageBody extends React.Component {
               restaurantList={this.props.restaurantList}
               toggleFavorite={this.props.toggleFavorite}
               foodFavorites={this.props.foodFavorites}
-              sortRestaurantList = {this.props.sortRestaurantList}
-              onRestaurantSort = {this.props.onRestaurantSort}
-              filterRestaurants = {this.props.filterRestaurants}
+              sortRestaurantList={this.props.sortRestaurantList}
+              onRestaurantSort={this.props.onRestaurantSort}
+              filterRestaurants={this.props.filterRestaurants}
               showRestaurantListView={this.props.showRestaurantListView}
               showRestaurantMapView={this.props.showRestaurantMapView}
               restaurantListViewActive={this.props.restaurantListViewActive}
@@ -34,8 +34,8 @@ class FoodAndEventsPageBody extends React.Component {
                     eventsList={this.props.eventsList}
                     toggleFavorite={this.props.toggleFavorite}
                     eventFavorites={this.props.eventFavorites}
-                    sortEventList = {this.props.sortEventList}
-                    onEventSort = {this.props.onEventSort}
+                    sortEventList={this.props.sortEventList}
+                    onEventSort={this.props.onEventSort}
                     filterEvents={this.props.filterEvents}
                     showEventListView={this.props.showEventListView}
                     showEventMapView={this.props.showEventMapView}
