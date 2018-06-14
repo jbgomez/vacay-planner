@@ -41,13 +41,13 @@ class FilterRestaurantButton extends Component {
 
   render() {
     return (
-      <div style={{position: 'absolute', top: 0, right: '0.85em'}} >
+      <div className='filterButton' >
         <Button onClick={this.show}>Filter</Button>
         <Modal size={this.state.size} open={this.state.open} onClose={this.close}>
           <Modal.Header>Select Filter Criteria</Modal.Header>
           <Modal.Content>
             <p>Price Range: </p>
-            <Form>
+            <Form className='filterForm'>
               <Checkbox
                 radio
                 label='$$$$$'
@@ -55,8 +55,8 @@ class FilterRestaurantButton extends Component {
                 value='5'
                 checked={this.state.priceRange === '5'}
                 onChange={this.updatePriceRange}
+                className='filterCt'
               />
-              <span>    </span>
               <Checkbox
                 radio
                 label='$$$$'
@@ -64,8 +64,8 @@ class FilterRestaurantButton extends Component {
                 value='4'
                 checked={this.state.priceRange === '4'}
                 onChange={this.updatePriceRange}
+                className='filterCt'
               />
-              <span>    </span>
               <Checkbox
                 radio
                 label='$$$'
@@ -73,8 +73,8 @@ class FilterRestaurantButton extends Component {
                 value='3'
                 checked={this.state.priceRange === '3'}
                 onChange={this.updatePriceRange}
+                className='filterCt'
               />
-              <span>    </span>
               <Checkbox
                 radio
                 label='$$'
@@ -82,8 +82,8 @@ class FilterRestaurantButton extends Component {
                 value='2'
                 checked={this.state.priceRange === '2'}
                 onChange={this.updatePriceRange}
+                className='filterCt'
               />
-              <span>    </span>
               <Checkbox
                 radio
                 label='$'
@@ -93,7 +93,6 @@ class FilterRestaurantButton extends Component {
                 onChange={this.updatePriceRange}
               />
             </Form>
-            <p></p>
             <Checkbox label='Open Now' checked={this.state.openNow} onChange={this.updateOpenNow}/>
           </Modal.Content>
           <Modal.Actions>

@@ -22,3 +22,23 @@ ul {
   margin: 0 auto;
   /* max-width: 1850px; */
 }
+
+.filterCt {
+  margin-right: 0.5em;
+}
+
+.filterForm {
+  margin-bottom: 1em;
+}
+
+.filterButton {
+  position: absolute;
+  top: 0;
+  right: 0.85em;
+}
+
+.sortButton {
+  position: absolute;
+  top: 0;
+  right: 7em;
+}
