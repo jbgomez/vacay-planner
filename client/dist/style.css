@@ -14,15 +14,21 @@ ul {
   margin-right: 15px;
 }
 
-.ui.grid {
-  margin-left: 10px;
-}
-
 .container {
   margin: 0 auto;
-  /* max-width: 1850px; */
+  padding: 0 10px;
 }
 
+.map-view {
+  margin-top: 0.5em;
+  height: 75vh;
+}
+
+.list-view {
+  margin-top: 0.5em;
+}
+
+<<<<<<< HEAD
 .filterCt {
   margin-right: 0.5em;
 }
@@ -41,4 +47,19 @@ ul {
   position: absolute;
   top: 0;
   right: 7em;
+=======
+.hide-view {
+  display: none;
+}
+
+.list-item {
+  min-width: 360px;
+  position: relative;
+  padding-bottom: 0.5em!important;
+}
+
+.list-item .extra {
+  position: static!important;
+  margin-top: 0.5em;
+>>>>>>> Add styling to list and map views
 }
