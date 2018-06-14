@@ -26,7 +26,9 @@ class FoodAndEventsPage extends React.Component {
                       {label: 'Name',
                       sortBy: 'name,asc'},
                       {label: 'Relevance',
-                      sortBy: 'relevance,desc'}]
+                      sortBy: 'relevance,desc'}],
+      restaurantListViewActive: true,
+      eventListViewActive: true
     };
     this.toggleFavorite = this.toggleFavorite.bind(this);
     this.saveTrip = this.saveTrip.bind(this);
@@ -35,6 +37,10 @@ class FoodAndEventsPage extends React.Component {
     this.onEventSort = this.onEventSort.bind(this);
     this.filterRestaurants = this.filterRestaurants.bind(this);
     this.filterEvents = this.filterEvents.bind(this);
+    this.showRestaurantMapView = this.showRestaurantMapView.bind(this);
+    this.showRestaurantListView = this.showRestaurantListView.bind(this);
+    this.showEventMapView = this.showEventMapView.bind(this);
+    this.showEventListView = this.showEventListView.bind(this);
   }
 
   toggleFavorite(listIndex, listName) {
@@ -178,6 +184,22 @@ class FoodAndEventsPage extends React.Component {
     this.getEventsByLocationAndDate(sortByCriteria);
   }
 
+  showRestaurantMapView() {
+
+  }
+
+  showRestaurantListView() {
+
+  }
+
+  showEventMapView() {
+
+  }
+
+  showEventListView() {
+
+  }
+
   render() {
     return (
       //Column width must add up to 16
@@ -203,6 +225,17 @@ class FoodAndEventsPage extends React.Component {
               onEventSort={this.onEventSort}
               filterRestaurants={this.filterRestaurants}
               filterEvents={this.filterEvents}
+              sortRestaurantList = {this.state.sortRestaurantList}
+              onRestaurantSort = {this.onRestaurantSort}
+              sortEventList = {this.state.sortEventList}
+              onEventSort = {this.onEventSort}
+              filterRestaurants = {this.filterRestaurants}
+              showRestaurantMapView={this.showRestaurantMapView}
+              showRestaurantListView={this.showRestaurantListView}
+              restaurantListViewActive={this.state.restaurantListViewActive}
+              showEventMapView={this.showEventMapView}
+              showEventListView={this.showEventListView}
+              eventListViewActive={this.state.eventListViewActive}
             />
           </Grid.Column>
           <Grid.Column width={6}>
