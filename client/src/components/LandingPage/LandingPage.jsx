@@ -32,6 +32,14 @@ class LandingPage extends React.Component {
     })
   }
 
+  editTrip(tripId) {
+
+  }
+
+  shareTrip(tripId) {
+
+  }
+
   render() {
     return (
       <div>
@@ -46,6 +54,9 @@ class LandingPage extends React.Component {
           handleAddressChange={this.props.handleAddressChange}
           handleAddressSelect={this.props.handleAddressSelect}
           handleSubmit={this.props.handleSubmit}
+          getAllTrips={this.props.getAllTrips}
+          editTrip={this.props.editTrip}
+          shareTrip={this.props.shareTrip}
         />
       </div>
     )
