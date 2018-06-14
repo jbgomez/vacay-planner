@@ -2,13 +2,15 @@ import React from 'react';
 import moment from 'moment';
 import SaveButton from '../Buttons/SaveButton.jsx';
 import SortButton from '../Buttons/SortButton.jsx';
+import FilterEventButton from '../Buttons/FilterEventButton.jsx';
 import { Button, Card, Image, Item, Label, Grid } from 'semantic-ui-react';
 
 const EventsTabContent = (props) => (
   <div>
     <Grid style={ {marginTop: 10} }>
       <Grid.Row style={ {height: 50} }>
-        <SortButton sortList = {props.sortEventList} onSort = {props.onEventSort}/>
+        <FilterEventButton filterEvents={props.filterEvents}/>
+        <SortButton sortList={props.sortEventList} onSort={props.onEventSort}/>
       </Grid.Row>
     </Grid>
     {props.eventsList.map((event, index) => {

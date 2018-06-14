@@ -34,6 +34,7 @@ class FoodAndEventsPage extends React.Component {
     this.onRestaurantSort = this.onRestaurantSort.bind(this);
     this.onEventSort = this.onEventSort.bind(this);
     this.filterRestaurants = this.filterRestaurants.bind(this);
+    this.filterEvents = this.filterEvents.bind(this);
   }
 
   toggleFavorite(listIndex, listName) {
@@ -147,6 +148,28 @@ class FoodAndEventsPage extends React.Component {
     });
   }
 
+  filterEvents(criteria) {
+    $.ajax({
+      type: 'GET',
+      url: `/events`,
+      data: {
+        startDate: this.props.startDate,
+        endDate: this.props.endDate,
+        location: this.props.addressComponents,
+        source: criteria.source,
+        includeFamily: criteria.includeFamily
+      },
+      dataType: 'json',
+      success: result => {
+        if (result) {
+          this.setState({
+            eventsList: result
+          });
+        }
+      }
+    });
+  }
+
   onRestaurantSort(sortByCriteria){
     this.getRestaurantsByLocation(sortByCriteria);
   }
@@ -174,11 +197,12 @@ class FoodAndEventsPage extends React.Component {
               foodFavorites={this.state.foodFavorites}
               eventFavorites={this.state.eventFavorites}
               toggleFavorite={this.toggleFavorite}
-              sortRestaurantList = {this.state.sortRestaurantList}
-              onRestaurantSort = {this.onRestaurantSort}
-              sortEventList = {this.state.sortEventList}
-              onEventSort = {this.onEventSort}
-              filterRestaurants = {this.filterRestaurants}
+              sortRestaurantList={this.state.sortRestaurantList}
+              onRestaurantSort={this.onRestaurantSort}
+              sortEventList={this.state.sortEventList}
+              onEventSort={this.onEventSort}
+              filterRestaurants={this.filterRestaurants}
+              filterEvents={this.filterEvents}
             />
           </Grid.Column>
           <Grid.Column width={6}>
