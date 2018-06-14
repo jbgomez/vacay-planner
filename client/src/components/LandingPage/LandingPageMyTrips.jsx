@@ -11,7 +11,15 @@ const LandingPageMyTrips = (props) => {
           <Card.Content header='Upcoming Trips'/>
           <Card.Content>
             {props.trips.map((trip, i) => {
-              return(<MyTripsEntry trip={trip} key={i}/>);
+              return(
+                <MyTripsEntry
+                  trip={trip}
+                  getAllTrips={this.props.getAllTrips}
+                  editTrip={this.props.editTrip}
+                  shareTrip={this.props.shareTrip}
+                  key={i}
+                />
+              );
             })}
           </Card.Content>
         </Card>
