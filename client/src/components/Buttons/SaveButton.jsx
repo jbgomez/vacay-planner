@@ -14,7 +14,7 @@ class SaveButton extends React.Component {
 
   render() {
     return (
-      <div style={{ float: 'right' }}>
+      <div style={{position: 'absolute', bottom: '0.33em', right: 0}}>
         <Icon style={this.props.isSaved ? {color: 'red'} : {color: 'grey'}}
             name={this.props.isSaved ? 'heart' : 'empty heart'}
             size='big' 
