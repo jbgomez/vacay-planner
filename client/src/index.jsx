@@ -114,25 +114,20 @@ class App extends React.Component {
         history.push('/foodandevents');
       });
     } else {
-      console.log('address', this.state.address);
       history.push('/foodandevents');
     }
   }
 
   // handles user wanting to edit trip from Upcoming Trips card on Landing Page
-  handleEditTrip(trip, e) {
-    this.props.handleAddressSelect(trip.address, null, () => {
-      history.push('/foodandevents');
-    });
+  // uses selected trip info to populate Restaurants and Events on foodAndEvents page
+  handleEditTrip(props, e) {
     this.setState({
-      startDate: new Date(),
-      endDate: new Date(new Date().valueOf() + 60 * 60 * 24 * 1000),
-      selectedTripAddress: '',
-      isEditTrip: true
+      startDate: props.trip.start_date,
+      endDate: props.trip.end_date,
+      address: props.trip.address,
     });
-    // pass values from feNewState...
-    this.props.history.push({
-      pathname: '/foodandevents'
+    this.handleAddressSelect(props.trip.address, null, () => {
+      props.history.push('/foodandevents');
     });
   }
 
@@ -164,7 +159,6 @@ class App extends React.Component {
               <SignUpPage signUpUser={this.signUpUser} {...props} />
             )} }/>
           <Route path='/foodandevents' render={(props) => {
-            console.log('fe props', props);
             return (
               <FoodAndEventsPage
                 user={this.state.user}
@@ -173,7 +167,7 @@ class App extends React.Component {
                 startDate={this.state.startDate}
                 endDate={this.state.endDate}
                 handleLogout={this.handleLogout}
-                address={this.stat.address}
+                address={this.state.address}
                 {...props} />
             )} }/>
           <Route path='/mytrips' render={(props) => {
