@@ -41,7 +41,8 @@ const Trip = db.define('trips', {
   id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
   start_date: Sequelize.DATE,
   end_date: Sequelize.DATE,
-  tripName: {type: Sequelize.STRING, allowNull: false}
+  tripName: {type: Sequelize.STRING, allowNull: false},
+  address: Sequelize.STRING
 })
 
 var Restaurant = db.define('restaurants', {
@@ -262,7 +263,8 @@ var dbHelpers = {
       user.createTrip({
         start_date: obj.trip.startDate,
         end_date: obj.trip.endDate,
-        tripName: obj.trip.name
+        tripName: obj.trip.name,
+        address: obj.trip.address
       }).then(trip => {
         createEvent(trip, obj);
         createRestaurant(trip, obj);
