@@ -6,19 +6,9 @@ import LocationSearchInput from './LocationSearchInput.jsx';
 import LandingPageMyTrips from './LandingPageMyTrips.jsx';
 
 const LandingPageBody = (props) => (
-  <Grid verticalAlign='middle' style={ {marginTop: 50} }>
-    <Grid.Row stretched>
-      {props.trips.length ?
-        <LandingPageMyTrips
-          trips={props.trips}
-          getAllTrips={props.getAllTrips}
-          editTrip={props.editTrip}
-          shareTrip={props.shareTrip}
-        />
-        :
-        null
-      }
-      <Grid.Column width={7}>
+  <Grid columns={2} divided style={ {marginTop: 50} }>
+    <Grid.Row>
+      <Grid.Column>
         <Card>
           <Card.Content header='Vacation Planner' />
           <Card.Content extra>
@@ -61,6 +51,16 @@ const LandingPageBody = (props) => (
           </Card.Content>
         </Card>
       </Grid.Column>
+      {props.trips.length ?
+        <LandingPageMyTrips
+          trips={props.trips}
+          getAllTrips={props.getAllTrips}
+          editTrip={props.editTrip}
+          shareTrip={props.shareTrip}
+        />
+        :
+        null
+      }
     </Grid.Row>
   </Grid>
 );

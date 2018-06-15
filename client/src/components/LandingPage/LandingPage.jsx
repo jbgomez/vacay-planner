@@ -32,7 +32,7 @@ class LandingPage extends React.Component {
     })
   }
 
-  editTrip() {
+  editTrip(e, tripId) {
 
   }
 
