@@ -9,9 +9,17 @@ const LandingPageMyTrips = (props) => {
       <Grid.Column style={{ maxWidth: 450}}>
         <Card centered fluid>
           <Card.Content header='Upcoming Trips'/>
-          <Card.Content extra>
-            {props.trips.map(trip => {
-              return(<MyTripsEntry trip={trip}/>);
+          <Card.Content>
+            {props.trips.map((trip, i) => {
+              return(
+                <MyTripsEntry
+                  trip={trip}
+                  getAllTrips={props.getAllTrips}
+                  editTrip={props.editTrip}
+                  shareTrip={props.shareTrip}
+                  key={i}
+                />
+              );
             })}
           </Card.Content>
         </Card>
