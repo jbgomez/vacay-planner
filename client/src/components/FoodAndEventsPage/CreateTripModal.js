@@ -44,8 +44,7 @@ class CreateTripModal extends React.Component {
   }
 
 
-  render()
-  {
+  render() {
     return (
       <Modal
         trigger={
