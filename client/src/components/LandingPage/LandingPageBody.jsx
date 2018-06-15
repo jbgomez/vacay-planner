@@ -7,19 +7,19 @@ import LandingPageMyTrips from './LandingPageMyTrips.jsx';
 
 const LandingPageBody = (props) => (
   <Grid verticalAlign='middle' style={ {marginTop: 50} }>
-    {props.trips.length ?
-      <LandingPageMyTrips
-        trips={props.trips}
-        getAllTrips={props.getAllTrips}
-        editTrip={props.editTrip}
-        shareTrip={props.shareTrip}
-      />
-      :
-      null
-    }
-    <Grid.Row>
-      <Grid.Column style={{ maxWidth: 450}}>
-        <Card centered fluid>
+    <Grid.Row stretched>
+      {props.trips.length ?
+        <LandingPageMyTrips
+          trips={props.trips}
+          getAllTrips={props.getAllTrips}
+          editTrip={props.editTrip}
+          shareTrip={props.shareTrip}
+        />
+        :
+        null
+      }
+      <Grid.Column width={7}>
+        <Card>
           <Card.Content header='Vacation Planner' />
           <Card.Content extra>
             <Form onSubmit={() => props.handleSubmit(props.history)}>
