@@ -12,8 +12,7 @@ const LandingPageBody = (props) => (
         <LandingPageMyTrips
           trips={props.trips}
           getAllTrips={props.getAllTrips}
-          editTrip={props.editTrip}
-          shareTrip={props.shareTrip}
+          handleEditTrip={this.handleEditTrip}
         />
         :
         null
