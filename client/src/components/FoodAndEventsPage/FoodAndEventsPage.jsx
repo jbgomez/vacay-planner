@@ -43,6 +43,7 @@ class FoodAndEventsPage extends React.Component {
     this.showRestaurantListView = this.showRestaurantListView.bind(this);
     this.showEventMapView = this.showEventMapView.bind(this);
     this.showEventListView = this.showEventListView.bind(this);
+    this.handleTabChange = this.handleTabChange.bind(this);
   }
 
   toggleFavorite(listIndex, listName) {
@@ -352,6 +353,13 @@ class FoodAndEventsPage extends React.Component {
     }
   }
 
+  handleTabChange() {
+    this.setState({
+      restaurantListViewActive: true,
+      eventListViewActive: true
+    });
+  }
+
   render() {
     return (
       //Column width must add up to 16
@@ -388,6 +396,7 @@ class FoodAndEventsPage extends React.Component {
               showEventMapView={this.showEventMapView}
               showEventListView={this.showEventListView}
               eventListViewActive={this.state.eventListViewActive}
+              handleTabChange={this.handleTabChange}
             />
           </Grid.Column>
           <Grid.Column width={6}>
