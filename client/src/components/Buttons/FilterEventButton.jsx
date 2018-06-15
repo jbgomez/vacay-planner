@@ -40,13 +40,13 @@ class FilterEventButton extends Component {
 
   render() {
     return (
-      <div style={{position: 'absolute', top: 0, right: '0.85em'}} >
+      <div className='filterButton'>
         <Button onClick={this.show}>Filter</Button>
         <Modal size={this.state.size} open={this.state.open} onClose={this.close}>
           <Modal.Header>Select Filter Criteria</Modal.Header>
           <Modal.Content>
             <p>Include Family-friendly events?</p>
-            <Form>
+            <Form className='filterForm'>
               <Checkbox
                 radio
                 label='yes'
@@ -54,8 +54,8 @@ class FilterEventButton extends Component {
                 value='yes'
                 checked={this.state.includeFamily === 'yes'}
                 onChange={this.updateIncludeFamily}
+                className='filterCt'
               />
-              <span>    </span>
               <Checkbox
                 radio
                 label='no'
@@ -63,8 +63,8 @@ class FilterEventButton extends Component {
                 value='no'
                 checked={this.state.includeFamily === 'no'}
                 onChange={this.updateIncludeFamily}
+                className='filterCt'
               />
-              <span>    </span>
               <Checkbox
                 radio
                 label='only'
@@ -72,9 +72,9 @@ class FilterEventButton extends Component {
                 value='only'
                 checked={this.state.includeFamily === 'only'}
                 onChange={this.updateIncludeFamily}
+                className='filterCt'
               />
             </Form>
-            <p></p>
             <p>Select Source</p>
             <Form>
               <Checkbox
@@ -84,8 +84,8 @@ class FilterEventButton extends Component {
                 value='ticketmaster'
                 checked={this.state.source === 'ticketmaster'}
                 onChange={this.updateSource}
+                className='filterCt'
               />
-              <span>    </span>
               <Checkbox
                 radio
                 label='universe'
@@ -93,8 +93,8 @@ class FilterEventButton extends Component {
                 value='universe'
                 checked={this.state.source === 'universe'}
                 onChange={this.updateSource}
+                className='filterCt'
               />
-              <span>    </span>
               <Checkbox
                 radio
                 label='frontgate'
@@ -102,8 +102,8 @@ class FilterEventButton extends Component {
                 value='frontgate'
                 checked={this.state.source === 'frontgate'}
                 onChange={this.updateSource}
+                className='filterCt'
               />
-              <span>    </span>
               <Checkbox
                 radio
                 label='tmr'
@@ -111,6 +111,7 @@ class FilterEventButton extends Component {
                 value='tmr'
                 checked={this.state.source === 'tmr'}
                 onChange={this.updateSource}
+                className='filterCt'
               />
             </Form>
           </Modal.Content>
