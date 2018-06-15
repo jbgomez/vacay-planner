@@ -97,6 +97,23 @@ class MyTripsPageBody extends React.Component {
     });
   }
 
+  getAllTrips(id) {
+    $.ajax({
+      type: 'GET',
+      url: `/trips`,
+      success: result => {
+        JSON.parse(result).length ?
+          (
+            this.setState({
+              selectedTrip: id || JSON.parse(result)[0].id,
+              allTrips: JSON.parse(result)
+            })
+          )
+          : '';
+      }
+    });
+  }
+
   render() {
     const {activeIndex} = this.state
     return (

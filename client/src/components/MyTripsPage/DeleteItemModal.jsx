@@ -42,7 +42,8 @@ class DeleteItemModal extends React.Component {
             <Icon name='remove'/> No
           </Button>
           <Button color='green' inverted onClick={() => {
-            this.props.handleDeleteClick(this.props.item)
+            this.props.handleDeleteClick(this.props.item);
+            this.handleClose();
           }}>
             <Icon name='checkmark'/> Yes
           </Button>

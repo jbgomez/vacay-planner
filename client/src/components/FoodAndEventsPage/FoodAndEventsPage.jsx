@@ -10,11 +10,13 @@ class FoodAndEventsPage extends React.Component {
     super(props);
 
     this.state = {
+      userTrips: [],
       restaurantList: [],
       eventsList: [],
       foodFavorites: [],
       eventFavorites: [],
       tripName: "",
+      currentTrip: [],
       sortRestaurantList: [{label: 'Best Match',
                             sortBy: 'best_match'},
                             {label: 'Ratings',
@@ -43,7 +45,23 @@ class FoodAndEventsPage extends React.Component {
     this.showRestaurantListView = this.showRestaurantListView.bind(this);
     this.showEventMapView = this.showEventMapView.bind(this);
     this.showEventListView = this.showEventListView.bind(this);
+    this.getUserTrips = this.getUserTrips.bind(this);
+    this.updateTrip = this.updateTrip.bind(this);
     this.handleTabChange = this.handleTabChange.bind(this);
+  }
+
+  getUserTrips() {
+    $.ajax({
+      type: 'GET',
+      url: `/trips`,
+      success: result => {
+        if(JSON.parse(result).length) {
+          this.setState({
+            userTrips: JSON.parse(result)
+          });
+        }
+      }
+    });
   }
 
   toggleFavorite(listIndex, listName) {
@@ -64,17 +82,17 @@ class FoodAndEventsPage extends React.Component {
     }
   }
 
-  handleNameChange(event) {
-    this.setState({tripName: event.target.value});
+  handleNameChange(name) {
+    this.setState({tripName: name});
   }
 
-  saveTrip() {
+  saveTrip(tripName) {
     var data = {
-      user: {email: 'ted.green@test.com'},
+      user: {email: this.props.user},
       trip: {
         start_date: this.props.startDate,
         end_date: this.props.endDate,
-        name: this.state.tripName
+        name: tripName || this.state.tripName
       },
       eventList: this.state.eventFavorites,
       restaurantList: this.state.foodFavorites
@@ -84,21 +102,51 @@ class FoodAndEventsPage extends React.Component {
       url: '/trips',
       data: data,
       success: (data) => {
-        console.log(data);
+        this.setState({
+          foodFavorites: [],
+          eventFavorites: [],
+          tripName: '',
+        });
       },
-      error: (err) => {console.log(err)},
-      dataType: 'json'
-    })
-    this.setState({
-      foodFavorites: [],
-      eventFavorites: [],
-      tripName: ""
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.error(errorThrown);
+      }
+    }).done(() => {
+      this.getUserTrips();
+    });
+  }
+
+  updateTrip(tripId) {
+    var data = {
+      trip: {
+        id: tripId.toString()
+      },
+      eventList: this.state.eventFavorites,
+      restaurantList: this.state.foodFavorites
+    };
+    $.ajax({
+      method: 'POST',
+      url: '/trip/update',
+      data: data,
+      success: (data) => {
+        this.setState({
+          foodFavorites: [],
+          eventFavorites: [],
+          tripName: '',
+        });
+      },
+      error: function(jqXHR, textStatus, errorThrown) {
+        console.error(errorThrown);
+      }
+    }).done(() => {
+      this.getUserTrips();
     });
   }
 
   componentDidMount() {
     this.getRestaurantsByLocation();
     this.getEventsByLocationAndDate();
+    this.getUserTrips();
   }
 
   getRestaurantsByLocation(sortBy) {
@@ -406,7 +454,11 @@ class FoodAndEventsPage extends React.Component {
               eventFavorites={this.state.eventFavorites}
               saveTrip={this.saveTrip}
               tripName={this.state.tripName}
-              onNameChange={this.handleNameChange}
+              handleNameChange={this.handleNameChange}
+              trips={this.state.userTrips}
+              currentTrip={this.state.currentTrip}
+              getUserTrips={this.getUserTrips}
+              updateTrip={this.updateTrip}
             />
           </Grid.Column>
         </Grid.Row>
