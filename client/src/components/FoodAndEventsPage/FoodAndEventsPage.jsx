@@ -105,13 +105,13 @@ class FoodAndEventsPage extends React.Component {
         this.setState({
           foodFavorites: [],
           eventFavorites: [],
-          tripName: "",
+          tripName: '',
         });
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.error(errorThrown);
       }
-    }).done((data) => {
+    }).done(() => {
       this.getUserTrips();
     });
   }
@@ -132,13 +132,13 @@ class FoodAndEventsPage extends React.Component {
         this.setState({
           foodFavorites: [],
           eventFavorites: [],
-          tripName: "",
+          tripName: '',
         });
       },
       error: function(jqXHR, textStatus, errorThrown) {
         console.error(errorThrown);
       }
-    }).done((data) => {
+    }).done(() => {
       this.getUserTrips();
     });
   }
