@@ -7,7 +7,7 @@ const MyTripsEntry = (props) => {
       <Segment.Group>
         <Segment padded color='blue'><Header as='h5'>{props.trip.tripName}</Header></Segment>
         <Segment.Group horizontal>
-          <Segment secondary>Edit</Segment>
+          <Segment secondary onClick={props.editTrip()}>Edit</Segment>
           <Segment secondary><Icon name='share'/>Share</Segment>
           <Segment secondary>All Trips</Segment>
         </Segment.Group>
