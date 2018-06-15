@@ -114,6 +114,15 @@ app.get('/trips/:id', (req, res) => {
   db.getTripItems(req.params.id, (obj) => res.status(200).end(JSON.stringify(obj)));
 });
 
+app.post('/trip/update', (req, res) => {
+  console.log(req.body);
+  db.updateTripItems(req.body.trip.id, req.body).then(() => {
+    res.status(200).end('successfully updated trip');
+  }).catch(() => {
+    res.status(500).end('error');
+  });
+});
+
 app.post('/trips', (req, res) => {
 
   /*

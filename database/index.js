@@ -97,6 +97,49 @@ Trip.hasMany(Event, {
   }
 });
 
+//create the Events if they exist
+const createEvent = (trip, obj) => {
+  if (obj.eventList !== undefined) {
+    obj.eventList.forEach(event => {
+      var tempEvent = Event.build({
+        name: event.name,
+        eventURL: event.url,
+        eventImg: event.images[0].url,
+        start_date: event.dates.start.dateTime,
+        venueName: event._embedded.venues[0].name,
+        venueLong: event._embedded.venues[0].location.longitude,
+        venueLat: event._embedded.venues[0].location.latitude,
+        venueAddress: `${event._embedded.venues[0].address.line1}, ${event._embedded.venues[0].city.name}, ${event._embedded.venues[0].state.stateCode} ${event._embedded.venues[0].postalCode}`
+      });
+
+      tempEvent.setTrip(trip, {save: false});
+      tempEvent.save();
+    });
+  }
+};
+
+const createRestaurant = (trip, obj) => {
+  //create the Restaurants if they exist
+  if (obj.restaurantList !== undefined) {
+    obj.restaurantList.forEach(restaurant => {
+      var tempRest = Restaurant.build({
+        name: restaurant.name,
+        yelpURL: restaurant.url,
+        review_count: restaurant.review_count,
+        rating: restaurant.rating,
+        price: restaurant.price,
+        restLong: restaurant.coordinates.longitude,
+        restLat: restaurant.coordinates.latitude,
+        categories: restaurant.categories,
+        display_address: restaurant.location.display_address,
+        image_url: restaurant.image_url
+      });
+      tempRest.setTrip(trip, {save: false});
+      tempRest.save();
+    });
+  }
+};
+
 Event.belongsTo(Trip);
 
 // This long promise chain is required to make sure
@@ -167,6 +210,17 @@ var dbHelpers = {
     });
   },
 
+  updateTripItems: (tripId, obj, cb) => {
+    return Trip.findOne({
+      where: {
+        id: tripId
+      }
+    }).then(trip => {
+      createEvent(trip, obj);
+      createRestaurant(trip, obj);
+    });
+  },
+
   deleteRestaurant: (tripId, tripItemId, cb) => {
     Restaurant.findOne({
       where: {
@@ -182,20 +236,20 @@ var dbHelpers = {
     });
   },
 
-deleteEvent: (tripId, tripItemId, cb) => {
-  Event.findOne({
-    where: {
-      id: tripItemId,
-      tripId: tripId,
-    }
-  }).then((event) => {
-    event.destroy();
-  }).then(() => {
-    cb(null, 'OK');
-  }).catch((err) => {
-    cb(err, null);
-  });
-},
+  deleteEvent: (tripId, tripItemId, cb) => {
+    Event.findOne({
+      where: {
+        id: tripItemId,
+        tripId: tripId,
+      }
+    }).then((event) => {
+      event.destroy();
+    }).then(() => {
+      cb(null, 'OK');
+    }).catch((err) => {
+      cb(err, null);
+    });
+  },
 
   // This will create a new Trip
   // and save all associated Events
@@ -210,47 +264,8 @@ deleteEvent: (tripId, tripItemId, cb) => {
         end_date: obj.trip.endDate,
         tripName: obj.trip.name
       }).then(trip => {
-
-        //create the Events if they exist
-        if (obj.eventList !== undefined) {
-          obj.eventList.forEach(event => {
-            var tempEvent = Event.build({
-              name: event.name,
-              eventURL: event.url,
-              eventImg: event.images[0].url,
-              start_date: event.dates.start.dateTime,
-              venueName: event._embedded.venues[0].name,
-              venueLong: event._embedded.venues[0].location.longitude,
-              venueLat: event._embedded.venues[0].location.latitude,
-              venueAddress: `${event._embedded.venues[0].address.line1}, ${event._embedded.venues[0].city.name}, ${event._embedded.venues[0].state.stateCode} ${event._embedded.venues[0].postalCode}`
-            })
-
-            tempEvent.setTrip(trip, {save: false});
-            tempEvent.save();
-          })
-
-        }
-
-        //create the Restaurants if they exist
-        if (obj.restaurantList !== undefined) {
-          obj.restaurantList.forEach(restaurant => {
-            var tempRest = Restaurant.build({
-              name: restaurant.name,
-              yelpURL: restaurant.url,
-              review_count: restaurant.review_count,
-              rating: restaurant.rating,
-              price: restaurant.price,
-              restLong: restaurant.coordinates.longitude,
-              restLat: restaurant.coordinates.latitude,
-              categories: restaurant.categories,
-              display_address: restaurant.location.display_address,
-              image_url: restaurant.image_url
-            })
-            tempRest.setTrip(trip, {save: false});
-            tempRest.save();
-          })
-
-        }
+        createEvent(trip, obj);
+        createRestaurant(trip, obj);
       })
     })
   },
