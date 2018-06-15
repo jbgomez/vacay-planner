@@ -14,9 +14,9 @@ const LandingPageMyTrips = (props) => {
               return(
                 <MyTripsEntry
                   trip={trip}
-                  getAllTrips={this.props.getAllTrips}
-                  editTrip={this.props.editTrip}
-                  shareTrip={this.props.shareTrip}
+                  getAllTrips={props.getAllTrips}
+                  editTrip={props.editTrip}
+                  shareTrip={props.shareTrip}
                   key={i}
                 />
               );
