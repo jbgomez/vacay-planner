@@ -40,11 +40,7 @@ class FilterEventButton extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
       <div className='filterButton'>
-=======
-      <div style={{display: 'inline-block'}} >
->>>>>>> Refactor to relative positioning
         <Button onClick={this.show}>Filter</Button>
         <Modal size={this.state.size} open={this.state.open} onClose={this.close}>
           <Modal.Header>Select Filter Criteria</Modal.Header>

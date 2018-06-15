@@ -28,7 +28,6 @@ ul {
   margin-top: 0.5em;
 }
 
-<<<<<<< HEAD
 .filterCt {
   margin-right: 0.5em;
 }
@@ -47,7 +46,8 @@ ul {
   position: absolute;
   top: 0;
   right: 7em;
-=======
+}
+
 .hide-view {
   display: none;
 }
@@ -61,5 +61,4 @@ ul {
 .list-item .extra {
   position: static!important;
   margin-top: 0.5em;
->>>>>>> Add styling to list and map views
 }
