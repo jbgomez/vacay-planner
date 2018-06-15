@@ -48,6 +48,7 @@ class LandingPage extends React.Component {
           handleSubmit={this.props.handleSubmit}
           getAllTrips={this.getAllTrips}
           handleEditTrip={this.props.handleEditTrip}
+          handleAllTrips={this.props.handleAllTrips}
         />
       </div>
     )

@@ -16,6 +16,7 @@ const LandingPageMyTrips = (props) => {
                 trip={trip}
                 getAllTrips={props.getAllTrips}
                 handleEditTrip={props.handleEditTrip}
+                handleAllTrips={props.handleAllTrips}
                 key={i}
                 history={props.history}
               />

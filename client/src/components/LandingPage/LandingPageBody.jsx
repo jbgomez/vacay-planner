@@ -13,6 +13,7 @@ const LandingPageBody = (props) => (
           trips={props.trips}
           getAllTrips={props.getAllTrips}
           handleEditTrip={props.handleEditTrip}
+          handleAllTrips={props.handleAllTrips}
           history={props.history}
         />
         :

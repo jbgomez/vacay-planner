@@ -8,8 +8,7 @@ const MyTripsEntry = (props) => {
       </Segment>
       <Button.Group>
         <Button onClick={(e) => props.handleEditTrip(props, e)}>Edit</Button>
-        <Button>Share</Button>
-        <Button>All Trips</Button>
+        <Button onClick={(e) => props.handleAllTrips(props.history, e)}>All Trips</Button>
       </Button.Group>
     </div>
   );
