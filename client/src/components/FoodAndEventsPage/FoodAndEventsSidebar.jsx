@@ -22,12 +22,11 @@ class FoodAndEventsSidebar extends React.Component {
   componentDidUpdate() {
     if (this.props.trips.length !== this.state.options.length) {
       var trips = this.props.trips.map((trip) => {
-        var trip = {
+        return {
           key: trip.id,
           value: trip.id,
           text: trip.tripName,
         };
-        return trip;
       });
       this.setState({
         options: trips,
@@ -43,8 +42,6 @@ class FoodAndEventsSidebar extends React.Component {
     this.props.handleNameChange(tripName);
     this.props.saveTrip(tripName);
   }
-
-  //<Input focus placeholder="Enter your trip name" value={this.props.tripName} onChange={this.props.onNameChange} />
 
   render() {
     const panes = [
