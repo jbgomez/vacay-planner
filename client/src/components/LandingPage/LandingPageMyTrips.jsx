@@ -5,11 +5,12 @@ import MyTripsEntry from './MyTripsEntry.jsx';
 
 const LandingPageMyTrips = (props) => {
   return (
-    <Grid.Column>
-      <Card className="landing-card">
+    <Grid.Column width={6}>
+      <Card>
         <Card.Content header='Upcoming Trips'/>
         <Card.Content>
           {props.trips.map((trip, i) => {
+
             return(
               <MyTripsEntry
                 trip={trip}
