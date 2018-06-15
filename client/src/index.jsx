@@ -30,6 +30,7 @@ class App extends React.Component {
     this.handleLogout = this.handleLogout.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleEditTrip = this.handleEditTrip.bind(this);
+    this.handleAllTrips = this.handleAllTrips.bind(this);
   }
 
   //write functions
@@ -131,6 +132,10 @@ class App extends React.Component {
     });
   }
 
+  handleAllTrips(history, e) {
+    history.push('/mytrips');
+  }
+
   render() {
     return (
       <Router>
@@ -147,6 +152,7 @@ class App extends React.Component {
                 handleLogout={this.handleLogout}
                 handleSubmit={this.handleSubmit}
                 handleEditTrip={this.handleEditTrip}
+                handleAllTrips={this.handleAllTrips}
                 {...props}
               />
             )} }/>
