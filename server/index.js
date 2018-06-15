@@ -115,7 +115,6 @@ app.get('/trips/:id', (req, res) => {
 });
 
 app.post('/trip/update', (req, res) => {
-  console.log(req.body);
   db.updateTripItems(req.body.trip.id, req.body).then(() => {
     res.status(200).end('successfully updated trip');
   }).catch(() => {
