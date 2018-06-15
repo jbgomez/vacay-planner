@@ -20,6 +20,9 @@ class FoodAndEventsPageBody extends React.Component {
               sortRestaurantList={this.props.sortRestaurantList}
               onRestaurantSort={this.props.onRestaurantSort}
               filterRestaurants={this.props.filterRestaurants}
+              showRestaurantListView={this.props.showRestaurantListView}
+              showRestaurantMapView={this.props.showRestaurantMapView}
+              restaurantListViewActive={this.props.restaurantListViewActive}
               />
           </Tab.Pane>
       },
@@ -34,6 +37,9 @@ class FoodAndEventsPageBody extends React.Component {
                     sortEventList={this.props.sortEventList}
                     onEventSort={this.props.onEventSort}
                     filterEvents={this.props.filterEvents}
+                    showEventListView={this.props.showEventListView}
+                    showEventMapView={this.props.showEventMapView}
+                    eventListViewActive={this.props.eventListViewActive}
                   />)
               : <h2 style={{color: '#d0021b', textAlign: 'center'}}>No events found.</h2>
             }
