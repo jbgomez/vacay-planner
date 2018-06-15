@@ -10,7 +10,6 @@ const LandingPageMyTrips = (props) => {
         <Card.Content header='Upcoming Trips'/>
         <Card.Content>
           {props.trips.map((trip, i) => {
-
             return(
               <MyTripsEntry
                 trip={trip}
