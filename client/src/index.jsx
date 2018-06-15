@@ -29,6 +29,7 @@ class App extends React.Component {
     this.handleAddressSelect = this.handleAddressSelect.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEditTrip = this.handleEditTrip.bind(this);
   }
 
   //write functions
@@ -113,8 +114,26 @@ class App extends React.Component {
         history.push('/foodandevents');
       });
     } else {
+      console.log('address', this.state.address);
       history.push('/foodandevents');
     }
+  }
+
+  // handles user wanting to edit trip from Upcoming Trips card on Landing Page
+  handleEditTrip(trip, e) {
+    this.props.handleAddressSelect(trip.address, null, () => {
+      history.push('/foodandevents');
+    });
+    this.setState({
+      startDate: new Date(),
+      endDate: new Date(new Date().valueOf() + 60 * 60 * 24 * 1000),
+      selectedTripAddress: '',
+      isEditTrip: true
+    });
+    // pass values from feNewState...
+    this.props.history.push({
+      pathname: '/foodandevents'
+    });
   }
 
   render() {
@@ -132,6 +151,7 @@ class App extends React.Component {
                 handleAddressSelect={this.handleAddressSelect}
                 handleLogout={this.handleLogout}
                 handleSubmit={this.handleSubmit}
+                handleEditTrip={this.handleEditTrip}
                 {...props}
               />
             )} }/>
@@ -144,6 +164,7 @@ class App extends React.Component {
               <SignUpPage signUpUser={this.signUpUser} {...props} />
             )} }/>
           <Route path='/foodandevents' render={(props) => {
+            console.log('fe props', props);
             return (
               <FoodAndEventsPage
                 user={this.state.user}
@@ -152,6 +173,7 @@ class App extends React.Component {
                 startDate={this.state.startDate}
                 endDate={this.state.endDate}
                 handleLogout={this.handleLogout}
+                address={this.stat.address}
                 {...props} />
             )} }/>
           <Route path='/mytrips' render={(props) => {
