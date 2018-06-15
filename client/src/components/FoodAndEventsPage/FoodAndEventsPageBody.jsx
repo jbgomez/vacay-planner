@@ -46,13 +46,9 @@ class FoodAndEventsPageBody extends React.Component {
           </Tab.Pane>
         )
       }
-    ]
-    return (
-      <div>
-        <Tab panes={panes} />
+    ];
 
-      </div>
-    );
+    return <Tab panes={panes} onTabChange={this.props.handleTabChange} />;
   }
 }
 
