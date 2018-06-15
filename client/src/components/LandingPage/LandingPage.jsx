@@ -32,11 +32,11 @@ class LandingPage extends React.Component {
     })
   }
 
-  editTrip(e, { name, value }) {
+  editTrip() {
 
   }
 
-  shareTrip(e, { name, value }) {
+  shareTrip() {
 
   }
 
