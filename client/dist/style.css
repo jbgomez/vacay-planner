@@ -52,6 +52,9 @@ ul {
   display: none;
 }
 
+.landing-cards {
+  overflow-y: scroll;
+}
 .list-item {
   min-width: 360px;
   position: relative;
