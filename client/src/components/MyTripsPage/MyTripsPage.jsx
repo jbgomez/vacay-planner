@@ -6,7 +6,7 @@ const MyTripsPage = (props) => {
   return (
     <div className='mytripspage'>
       <NavBar user={props.user} handleLogout={props.handleLogout}/>
-      <MyTripsPageBody />
+      <MyTripsPageBody history={props.history}/>
     </div>
   )
 }
