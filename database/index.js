@@ -291,7 +291,8 @@ var dbHelpers = {
       var testTrip = Trip.build({
           tripName: 'Cool Runnings',
           start_date: new Date(),
-          end_date: new Date()
+          end_date: new Date(),
+          address: ''
       });
 
       //associate with user
