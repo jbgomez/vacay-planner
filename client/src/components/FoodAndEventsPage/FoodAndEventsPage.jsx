@@ -47,6 +47,7 @@ class FoodAndEventsPage extends React.Component {
     this.showEventListView = this.showEventListView.bind(this);
     this.getUserTrips = this.getUserTrips.bind(this);
     this.updateTrip = this.updateTrip.bind(this);
+    this.handleTabChange = this.handleTabChange.bind(this);
   }
 
   getUserTrips() {
@@ -400,6 +401,13 @@ class FoodAndEventsPage extends React.Component {
     }
   }
 
+  handleTabChange() {
+    this.setState({
+      restaurantListViewActive: true,
+      eventListViewActive: true
+    });
+  }
+
   render() {
     return (
       //Column width must add up to 16
@@ -436,6 +444,7 @@ class FoodAndEventsPage extends React.Component {
               showEventMapView={this.showEventMapView}
               showEventListView={this.showEventListView}
               eventListViewActive={this.state.eventListViewActive}
+              handleTabChange={this.handleTabChange}
             />
           </Grid.Column>
           <Grid.Column width={6}>
