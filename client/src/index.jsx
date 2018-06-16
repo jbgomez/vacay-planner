@@ -108,7 +108,7 @@ class App extends React.Component {
     })
     .catch(error => console.error('Error', error));
   }
-  
+
   handleSubmit(history) {
     if (!this.state.address.trim().length) {
       alert('Please select a valid city and state.');
