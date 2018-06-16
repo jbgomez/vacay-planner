@@ -5,10 +5,11 @@ import MyTripsEntry from './MyTripsEntry.jsx';
 
 const LandingPageMyTrips = (props) => {
   return (
-    <Grid.Column width={6}>
-      <Card>
+    <Grid.Column width={4}>
+      <Card style={{height: '440px'}}>
         <Card.Content header='Upcoming Trips'/>
-        <Card.Content>
+        <Button onClick={(e) => props.handleAllTrips(props.history, e)} size="tiny" style={{position: 'absolute', top: '0.75em', right: '0.75em', width: 'auto'}}>All Trips</Button>
+        <Card.Content style={{overflowY: 'scroll'}}>
           {props.trips.map((trip, i) => {
             return(
               <MyTripsEntry

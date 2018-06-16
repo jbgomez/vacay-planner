@@ -6,8 +6,8 @@ import LocationSearchInput from './LocationSearchInput.jsx';
 import LandingPageMyTrips from './LandingPageMyTrips.jsx';
 
 const LandingPageBody = (props) => (
-  <Grid verticalAlign='middle' style={ {marginTop: 50} }>
-    <Grid.Row stretched>
+  <Grid centered verticalAlign='middle' style={ {marginTop: 50} }>
+    <Grid.Row centered stretched>
       {props.trips.length ?
         <LandingPageMyTrips
           trips={props.trips}
@@ -19,9 +19,9 @@ const LandingPageBody = (props) => (
         :
         null
       }
-      <Grid.Column width={7}>
-        <Card>
-          <Card.Content header='Vacation Planner'/>
+      <Grid.Column width={4}>
+        <Card style={{height: '440px'}}>
+          <Card.Content header='Vacation Planner' style={{paddingTop: '1.25em'}}/>
           <Card.Content extra>
             <Form onSubmit={() => props.handleSubmit(props.history)}>
               <Header as='h2' color='red' textAlign='center'>
