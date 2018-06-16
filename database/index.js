@@ -256,13 +256,12 @@ var dbHelpers = {
   // and save all associated Events
   // & Restaurants to the Database
   newTrip: (email, obj) => {
-
     User.findOne({where: {email: email}}).then(user => {
 
       //create the Trip
       user.createTrip({
-        start_date: obj.trip.startDate,
-        end_date: obj.trip.endDate,
+        start_date: obj.trip.start_date,
+        end_date: obj.trip.end_date,
         tripName: obj.trip.name,
         address: obj.trip.address
       }).then(trip => {

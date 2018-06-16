@@ -21,7 +21,7 @@ const LandingPageBody = (props) => (
       }
       <Grid.Column width={7}>
         <Card>
-          <Card.Content header='Vacation Planner' />
+          <Card.Content header='Vacation Planner'/>
           <Card.Content extra>
             <Form onSubmit={() => props.handleSubmit(props.history)}>
               <Header as='h2' color='red' textAlign='center'>
