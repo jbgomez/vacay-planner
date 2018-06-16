@@ -1,17 +1,15 @@
 import React from 'react';
-import { Header, Icon, Segment } from 'semantic-ui-react';
+import { Header, Button, Segment } from 'semantic-ui-react';
 
 const MyTripsEntry = (props) => {
   return (
     <div>
-      <Segment.Group>
-        <Segment padded color='blue'><Header as='h5'>{props.trip.tripName}</Header></Segment>
-        <Segment.Group horizontal>
-          <Segment secondary onClick={props.editTrip}>Edit</Segment>
-          <Segment secondary><Icon name='share'/>Share</Segment>
-          <Segment secondary>All Trips</Segment>
-        </Segment.Group>
-      </Segment.Group>
+      <Segment className="landing-card" padded color='blue'><Header as='h5'>{props.trip.tripName}</Header>
+      </Segment>
+      <Button.Group>
+        <Button onClick={(e) => props.handleEditTrip(props, e)}>Edit</Button>
+        <Button onClick={(e) => props.handleAllTrips(props.history, e)}>All Trips</Button>
+      </Button.Group>
     </div>
   );
 }

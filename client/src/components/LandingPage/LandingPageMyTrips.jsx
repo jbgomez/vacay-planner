@@ -5,26 +5,25 @@ import MyTripsEntry from './MyTripsEntry.jsx';
 
 const LandingPageMyTrips = (props) => {
   return (
-    <Grid.Row>
-      <Grid.Column style={{ maxWidth: 450}}>
-        <Card centered fluid>
-          <Card.Content header='Upcoming Trips'/>
-          <Card.Content>
-            {props.trips.map((trip, i) => {
-              return(
-                <MyTripsEntry
-                  trip={trip}
-                  getAllTrips={props.getAllTrips}
-                  editTrip={props.editTrip}
-                  shareTrip={props.shareTrip}
-                  key={i}
-                />
-              );
-            })}
-          </Card.Content>
-        </Card>
-      </Grid.Column>
-    </Grid.Row>
+    <Grid.Column width={6}>
+      <Card>
+        <Card.Content header='Upcoming Trips'/>
+        <Card.Content>
+          {props.trips.map((trip, i) => {
+            return(
+              <MyTripsEntry
+                trip={trip}
+                getAllTrips={props.getAllTrips}
+                handleEditTrip={props.handleEditTrip}
+                handleAllTrips={props.handleAllTrips}
+                key={i}
+                history={props.history}
+              />
+            );
+          })}
+        </Card.Content>
+      </Card>
+    </Grid.Column>
   );
 }
 

@@ -92,7 +92,8 @@ class FoodAndEventsPage extends React.Component {
       trip: {
         start_date: this.props.startDate,
         end_date: this.props.endDate,
-        name: tripName || this.state.tripName
+        name: tripName || this.state.tripName,
+        address: this.props.address
       },
       eventList: this.state.eventFavorites,
       restaurantList: this.state.foodFavorites
@@ -245,7 +246,7 @@ class FoodAndEventsPage extends React.Component {
           zoom: 12,
           center: this.props.latLng
         });
-        
+
         // init popup info window for map markers
         const infowindow = new google.maps.InfoWindow();
 
@@ -256,7 +257,7 @@ class FoodAndEventsPage extends React.Component {
 
           // create marker and apply to map using lat & lng from restaurant
           const marker = new google.maps.Marker({
-            position: { 
+            position: {
               lat: rest.coordinates.latitude,
               lng: rest.coordinates.longitude
             },
@@ -314,7 +315,7 @@ class FoodAndEventsPage extends React.Component {
           zoom: 11,
           center: this.props.latLng
         });
-        
+
         // init popup info window for map markers
         const infowindow = new google.maps.InfoWindow();
 
@@ -331,7 +332,7 @@ class FoodAndEventsPage extends React.Component {
             // init venue key and add object with empty nodes array and lat & lng of venue
             venues[venue.name] = {
               nodes: [],
-              latLng: { 
+              latLng: {
                 lat: parseFloat(venue.location.latitude),
                 lng: parseFloat(venue.location.longitude)
               }

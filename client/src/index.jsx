@@ -29,6 +29,8 @@ class App extends React.Component {
     this.handleAddressSelect = this.handleAddressSelect.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleEditTrip = this.handleEditTrip.bind(this);
+    this.handleAllTrips = this.handleAllTrips.bind(this);
   }
 
   //write functions
@@ -117,6 +119,23 @@ class App extends React.Component {
     }
   }
 
+  // handles user wanting to edit trip from Upcoming Trips card on Landing Page
+  // uses selected trip info to populate Restaurants and Events on foodAndEvents page
+  handleEditTrip(props, e) {
+    this.setState({
+      startDate: props.trip.start_date,
+      endDate: props.trip.end_date,
+      address: props.trip.address,
+    });
+    this.handleAddressSelect(props.trip.address, null, () => {
+      props.history.push('/foodandevents');
+    });
+  }
+
+  handleAllTrips(history, e) {
+    history.push('/mytrips');
+  }
+
   render() {
     return (
       <Router>
@@ -132,6 +151,8 @@ class App extends React.Component {
                 handleAddressSelect={this.handleAddressSelect}
                 handleLogout={this.handleLogout}
                 handleSubmit={this.handleSubmit}
+                handleEditTrip={this.handleEditTrip}
+                handleAllTrips={this.handleAllTrips}
                 {...props}
               />
             )} }/>
@@ -152,6 +173,7 @@ class App extends React.Component {
                 startDate={this.state.startDate}
                 endDate={this.state.endDate}
                 handleLogout={this.handleLogout}
+                address={this.state.address}
                 {...props} />
             )} }/>
           <Route path='/mytrips' render={(props) => {

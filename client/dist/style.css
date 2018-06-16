@@ -62,3 +62,7 @@ ul {
   position: static!important;
   margin-top: 0.5em;
 }
+
+.landing-card {
+  overflow-y: scroll;
+}
