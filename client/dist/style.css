@@ -66,3 +66,7 @@ ul {
 .landing-card {
   overflow-y: scroll;
 }
+
+.ui.card > .content {
+  flex-grow: 0!important;
+}
