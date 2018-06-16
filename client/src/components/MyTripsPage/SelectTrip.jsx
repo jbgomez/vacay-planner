@@ -8,9 +8,10 @@ function SelectTrip(props) {
       {props.allTrips.map(trip => {
         return (
           <Menu.Item
-            style={trip.id === props.selectedTrip ? {color: '#d0021b'} : null}
+            style={(trip.id && props.selectedTrip) ? (trip.id === props.selectedTrip ? {color: 'blue'} : null) : null}
             onClick={props.onSelect.bind(null, trip.id)}
             key={trip.id}
+            active={(trip.id === props.selectedTrip)}
           >
             {trip.tripName}
           </Menu.Item>
