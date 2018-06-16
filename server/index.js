@@ -103,7 +103,7 @@ app.get('/restaurants', (req, res) => {
 
 // Get saved trips from database for a registered user
 app.get('/trips', (req, res) => {
-  if (req.session.user !== null) {
+  if (req.session.user) {
     db.getUserTrips({email: req.session.user}, (obj) => res.status(200).end(JSON.stringify(obj)))
   } else {
     res.status(400).send('must be logged in to get trips')
