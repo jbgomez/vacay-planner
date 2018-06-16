@@ -147,7 +147,6 @@ app.post('/trips', (req, res) => {
   if (req.session.user){
     // db.newTrip(req.body)
     // res.status(200).end('successfully added trip')
-
     db.newTrip(req.session.user, req.body)
     res.status(200).end('successfully added trip')
 
