@@ -87,6 +87,11 @@ class App extends React.Component {
   }
 
   handleAddressSelect(location) {
+    this.getAddressComponents(location)
+    .then(newState => this.setState(newState));
+  }
+
+  getAddressComponents(location) {
     const newState = { address: location };
     return geocodeByAddress(location)
     .then(results => {
@@ -111,7 +116,7 @@ class App extends React.Component {
       alert('Start Date cannot be greater than End Date');
     } else if (!this.state.latLng) {
       const savedSuggestion = document.querySelector('.location-search-input').getAttribute('data-first-suggestion');
-      this.handleAddressSelect(savedSuggestion)
+      this.getAddressComponents(savedSuggestion)
       .then(newState => {
         this.setState(newState, () => history.push('/foodandevents'));
       });
@@ -123,7 +128,7 @@ class App extends React.Component {
   // handles user wanting to edit trip from Upcoming Trips card on Landing Page
   // uses selected trip info to populate Restaurants and Events on foodAndEvents page
   handleEditTrip(props, e) {
-    this.handleAddressSelect(props.trip.address)
+    this.getAddressComponents(props.trip.address)
     .then(newState => {
       newState.startDate = props.trip.start_date;
       newState.endDate = props.trip.end_date;
