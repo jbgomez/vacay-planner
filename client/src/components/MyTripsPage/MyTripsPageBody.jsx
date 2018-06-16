@@ -13,6 +13,7 @@ class MyTripsPageBody extends React.Component {
 
     this.state = {
       allTrips: [],
+      selectedTrip: '',
       eventsSelected: [],
       restaurantsSelected: [],
       activeIndex: null
