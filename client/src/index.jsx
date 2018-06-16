@@ -86,24 +86,24 @@ class App extends React.Component {
     });
   }
 
-  handleAddressSelect(location, placeId, cb) {
+  handleAddressSelect(location) {
     const newState = { address: location };
-    geocodeByAddress(location)
-      .then(results => {
-        newState.addressComponents = {
-          city: results[0].address_components[0].long_name,
-          stateCode: results[0].address_components[2].short_name,
-          countryCode: results[0].address_components[3].short_name
-        };
-        return getLatLng(results[0]);
-      })
-      .then(latLng => {
-        newState.latLng = latLng;
-        this.setState(newState, () => cb ? cb() : null);
-      })
-      .catch(error => console.error('Error', error))
+    return geocodeByAddress(location)
+    .then(results => {
+      newState.addressComponents = {
+        city: results[0].address_components[0].long_name,
+        stateCode: results[0].address_components[2].short_name,
+        countryCode: results[0].address_components[3].short_name
+      };
+      return getLatLng(results[0]);
+    })
+    .then(latLng => {
+      newState.latLng = latLng;
+      return newState;
+    })
+    .catch(error => console.error('Error', error));
   }
-
+  
   handleSubmit(history) {
     if (!this.state.address.trim().length) {
       alert('Please select a valid city and state.');
@@ -111,8 +111,9 @@ class App extends React.Component {
       alert('Start Date cannot be greater than End Date');
     } else if (!this.state.latLng) {
       const savedSuggestion = document.querySelector('.location-search-input').getAttribute('data-first-suggestion');
-      this.handleAddressSelect(savedSuggestion, null, () => {
-        history.push('/foodandevents');
+      this.handleAddressSelect(savedSuggestion)
+      .then(newState => {
+        this.setState(newState, () => history.push('/foodandevents'));
       });
     } else {
       history.push('/foodandevents');
@@ -122,13 +123,11 @@ class App extends React.Component {
   // handles user wanting to edit trip from Upcoming Trips card on Landing Page
   // uses selected trip info to populate Restaurants and Events on foodAndEvents page
   handleEditTrip(props, e) {
-    this.setState({
-      startDate: props.trip.start_date,
-      endDate: props.trip.end_date,
-      address: props.trip.address,
-    });
-    this.handleAddressSelect(props.trip.address, null, () => {
-      props.history.push('/foodandevents');
+    this.handleAddressSelect(props.trip.address)
+    .then(newState => {
+      newState.startDate = props.trip.start_date;
+      newState.endDate = props.trip.end_date;
+      this.setState(newState, () => props.history.push('/foodandevents'));
     });
   }
 
